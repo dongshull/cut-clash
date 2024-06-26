@@ -34,7 +34,7 @@
                 <div class="col-8 col-md-10">
                   <label class="form-label" for="remote">远程配置</label>
                   <select class="form-select" id="remote" @change="selectRemoteConfig">
-                    <option value="">默认配置</option>
+                    <option value="">请选择配置</option>
                     <option v-for="option in remoteConfigOptions" :key="option" :value="option.value">
                       {{ option.text }}
                     </option>
