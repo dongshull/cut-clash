@@ -21,7 +21,7 @@
                 <div class="col-7 col-md-6">
                   <label class="form-label" for="api">后端服务</label>
                   <select class="form-select" id="api" @change="selectApi">
-                    <option value="">默认后端</option>
+                    <option value="">请选择后端</option>
                     <option v-for="option in apiUrl" :key="option" :value="option.value">
                       {{ option.text }}
                     </option>
