@@ -4,16 +4,16 @@ window.config = {
   // API 地址
   apiUrl: [
     {
-      value: 'http://127.0.0.1:25500',
-      text: '本地局域网版后端',
-    },
-    {
       value: 'https://suc.miaoco.com',
       text: 'LovinYarn 后端',
     },
     {
       value: 'https://convert.miaoco.com',
       text: 'LovinYarn 增强型后端',
+    },
+    {
+      value: 'http://127.0.0.1:25500',
+      text: '本地局域网版后端',
     },
   ],
   // 短域名服务地址
