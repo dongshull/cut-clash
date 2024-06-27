@@ -22,7 +22,7 @@
                   <label class="form-label" for="api">后端服务</label>
                   <select class="form-select" id="api" @change="selectApi">
                     <option value="">请选择后端</option>
-                    <option v-for="option in apiUrl" :key="option" :value="option.value">
+                    <option :value="apiUrl">
                       {{ option.text }}
                     </option>
                     <option value="manual">自定义后端 API 地址</option>
