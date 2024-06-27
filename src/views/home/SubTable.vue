@@ -21,7 +21,6 @@
                 <div class="col-7 col-md-6">
                   <label class="form-label" for="api">后端服务</label>
                   <select class="form-select" id="api" @change="selectApi">
-                    <option value="">请选择后端</option>
                     <option :value="apiUrl">
                       {{ option.text }}
                     </option>
