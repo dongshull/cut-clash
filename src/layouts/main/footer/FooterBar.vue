@@ -3,12 +3,7 @@
     <div class="footer-bottom py-3">
       <div class="container" style="text-align: center">
         <div class="mb-2 mb-md-0">
-          <span class="footer-text">GitHub:&nbsp;</span>
-          <span class="footer-text"
-            ><a href="https://github.com/xuanranran/subweb" target="_blank" class="fw-medium text-white footer-link"
-              >xuanranran/subweb</a
-            ></span
-          >
+          <span>好用的订阅转换页面</span>
         </div>
       </div>
     </div>

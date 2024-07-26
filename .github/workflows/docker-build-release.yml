@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT: subweb
+  PROJECT: subweb-new
 
 jobs:
   build:
@@ -58,20 +58,3 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ secrets.DOCKER_USERNAME }}/${{ env.PROJECT }}
           readme: "./README.md"
-
-      - name: Login harbor
-        uses: docker/login-action@v1 
-        with:
-          registry: ${{ secrets.HARBOR_REGISTRY }}
-          username: ${{ secrets.HARBOR_USERNAME }}
-          password: ${{ secrets.HARBOR_PASSWORD }}
-
-      - name: Build and push to harbor
-        uses: docker/build-push-action@v3.0.0
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            ${{ secrets.HARBOR_REGISTRY }}/${{ secrets.HARBOR_USERNAME }}/${{ env.PROJECT }}:latest
-            ${{ secrets.HARBOR_REGISTRY }}/${{ secrets.HARBOR_USERNAME }}/${{ env.PROJECT }}:${{ env.tag }}
