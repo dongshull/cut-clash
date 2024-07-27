@@ -132,7 +132,8 @@ export default {
     return {
       placeholder: '多订阅链接或节点请确保每行一条\n支持手动使用"|"分割多链接或节点',
       targetOptions: [
-        { value: 'clashmate', text: 'Clash-Mate' },        
+        { value: 'clash', text: 'Clash' },
+        { value: 'clash', text: 'Clash-Mate' },        
         { value: 'singbox', text: 'Sing-box' },
         { value: 'v2ray', text: 'V2Ray' },
         { value: 'loon', text: 'Loon' },
@@ -141,8 +142,6 @@ export default {
         { value: 'surge&ver=2', text: 'SurgeV2' },
         { value: 'surge&ver=3', text: 'SurgeV3' },
         { value: 'surge&ver=4', text: 'SurgeV4' },
-        { value: 'clash', text: 'Clash' },
-        { value: 'clashr', text: 'ClashR' },
         { value: 'surfboard', text: 'Surfboard' },
         { value: 'ss', text: 'SS (SIP002)' },
         { value: 'sssub', text: 'SS Android' },

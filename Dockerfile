@@ -1,7 +1,7 @@
 FROM node:14-alpine AS build
 LABEL maintainer="Stille <stille@ioiox.com>"
 
-ENV VERSION 2.1
+ENV VERSION 2.2
 
 WORKDIR /app
 COPY . /app
