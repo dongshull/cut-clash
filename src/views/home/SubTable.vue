@@ -29,7 +29,7 @@
                   </select>
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
-                  <input class="form-control" placeholder="自定义后端 API 地址或者你自己的域名 v-model="api" />
+                  <input class="form-control" placeholder="自定义后端 API 地址示例" v-model="api" />
                 </div>
                 <div class="col-8 col-md-10">
                   <label class="form-label" for="remote">远程配置</label>
@@ -46,7 +46,7 @@
                   <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowRemoteConfig">
-                  <input class="form-control" placeholder="自定义远程配置地址：" v-model="remoteConfig" />
+                  <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowMoreConfig">
                   <label class="form-label" for="add-user-email">可选参数</label>
