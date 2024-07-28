@@ -29,7 +29,7 @@
                   </select>
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
-                  <input class="form-control" placeholder="自定义后端 API 地址示例" v-model="api" />
+                  <input class="form-control" placeholder="自定义后端API地址" v-model="api" />
                 </div>
                 <div class="col-8 col-md-10">
                   <label class="form-label" for="remote">远程配置</label>
@@ -134,8 +134,8 @@ export default {
       targetOptions: [
         { value: 'clash', text: 'Clash' },
         { value: 'clashr', text: 'ClashR' },
-        { value: 'singbox', text: 'Sing-box' },
         { value: 'v2ray', text: 'V2Ray' },
+        { value: 'singbox', text: 'Sing-box' },
         { value: 'quan', text: 'Quantumult' },
         { value: 'quanx', text: 'Quantumult X' },
         { value: 'surge&ver=2', text: 'SurgeV2' },
