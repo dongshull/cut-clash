@@ -67,6 +67,10 @@
                         <label class="form-check-label" for="udp">开启UDP</label>
                       </div>
                       <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="xudp" v-model="moreConfig.xudp" />
+                        <label class="form-check-label" for="xudp">开启XUDP</label>x
+                      </div>
+                      <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="sort" v-model="moreConfig.sort" />
                         <label class="form-check-label" for="sort">排序节点</label>
                       </div>
