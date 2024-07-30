@@ -75,6 +75,17 @@
                         <label class="form-check-label" for="sort">排序节点</label>
                       </div>
                       <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="clash.doh" v-model="moreConfig.clash.doh" />
+                        <label class="form-check-label" for="clash.doh">Clash.DoH</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="surge.doh" v-model="moreConfig.surge.doh" />
+                        <label class="form-check-label" for="surge.doh">Surge.DoH</label>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="tls13" v-model="moreConfig.tls13" />
+                        <label class="form-check-label" for="tls13">开启TLS_1.3</label>
+                      </div>
+                      <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="scv" v-model="moreConfig.scv" />
                         <label class="form-check-label" for="scv">关闭证书检查</label>
                       </div>
