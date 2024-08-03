@@ -11,7 +11,6 @@
         </div>
       </div>
     </div>
-    <div class="landing-hero-blank"></div>
   </section>
 </template>
 
@@ -29,32 +28,20 @@ export default {
 .light-style .landing-hero {
   background: linear-gradient(338.18deg, #fafaff 0%, #ececec 94.44%);
 }
+
 .landing-hero .hero-animation-img {
   margin-bottom: -24rem;
 }
+
 @media (max-width: 1199.98px) {
   .landing-hero .hero-animation-img {
     margin-bottom: -18rem;
   }
 }
+
 @media (max-width: 575.98px) {
   .landing-hero .hero-animation-img {
     margin-bottom: -10rem;
-  }
-}
-
-/* Landing Hero Blank */
-.landing-hero-blank {
-  padding-top: 20rem;
-}
-@media (max-width: 1199.98px) {
-  .landing-hero-blank {
-    padding-top: 15rem;
-  }
-}
-@media (max-width: 575.98px) {
-  .landing-hero-blank {
-    padding-top: 7rem;
   }
 }
 </style>
