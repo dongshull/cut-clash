@@ -1,9 +1,9 @@
 <template>
   <div class="row g-4 custom-div">
     <div class="col-12 col-lg-12 pt-4 pt-lg-0">
-      <div class="tab-content p-0">
+      <div class="tab-content p-0 glass-effect">
         <div class="tab-pane fade show active">
-          <div class="card mb-4">
+          <div class="card mb-4 glass-effect">
             <div class="card-body">
               <div class="row mb-3 g-3">
                 <div class="col-12 col-md-12">
@@ -107,7 +107,7 @@
   </div>
 
   <!-- 弹窗结构 -->
-  <dialog id="errorDialog" ref="errorDialog">
+  <dialog id="errorDialog" ref="errorDialog" class="glass-effect">
     <div>
       <p>{{ dialogMessage }}</p>
       <button @click="closeDialog">关闭</button>
@@ -294,6 +294,16 @@ export default {
 </script>
 
 <style scoped>
+/* 毛玻璃效果样式 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 /* 弹窗样式 */
 dialog {
   border: none;
@@ -304,5 +314,23 @@ dialog {
 }
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
+}
+
+/* 按钮样式 */
+button {
+  background-color: #4CAF50; /* 绿色背景色 */
+  color: white; /* 白色文字 */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049; /* 鼠标悬停的颜色 */
 }
 </style>
