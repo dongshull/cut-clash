@@ -35,10 +35,10 @@ export default {
 
 .glass-effect {
   background: rgba(255, 255, 255, 0.6);
-  border-radius: 10px;
   padding: 20px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  border-radius: 0;
 }
 
 .landing-hero .hero-animation-img {
