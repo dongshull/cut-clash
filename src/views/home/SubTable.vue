@@ -105,6 +105,14 @@
       </div>
     </div>
   </div>
+
+  <!-- 弹窗结构 -->
+  <dialog id="errorDialog" ref="errorDialog">
+    <div>
+      <p>{{ dialogMessage }}</p>
+      <button @click="closeDialog">关闭</button>
+    </div>
+  </dialog>
 </template>
 
 <script>
@@ -112,6 +120,7 @@ import { showLoading, hideLoading } from '@/components/loading';
 import { getSubLink, regexCheck } from './index.js';
 import { request } from '@/network';
 import showNotification from '@/components/notification';
+
 export default {
   name: 'SubTable',
   setup() {
@@ -163,6 +172,7 @@ export default {
       api: window.config.apiUrl,
       target: 'clash',
       remoteConfig: '',
+      dialogMessage: '',  // 新增变量，用于存储弹窗的消息内容
     };
   },
   methods: {
@@ -189,7 +199,8 @@ export default {
     },
     toCopy(url, title) {
       if (!url) {
-        this.$showDialog('warning', '注意', '复制失败 内容为空');
+        this.dialogMessage = '复制失败 内容为空';
+        this.openDialog();
         return;
       }
       var copyInput = document.createElement('input');
@@ -203,24 +214,27 @@ export default {
           showNotification(title + ' 复制成功', '成功');
         }
       } catch {
-        this.$showDialog('warning', '注意', '复制失败，请检查浏览器兼容性');
+        this.dialogMessage = '复制失败，请检查浏览器兼容性';
+        this.openDialog();
       }
     },
     getConverter() {
       if (this.urls == '') {
-        this.$showDialog('warning', '注意', '请输入订阅链接或节点');
+        this.dialogMessage = '请输入订阅链接或节点';
+        this.openDialog();
         return false;
       }
       if (!regexCheck(this.api)) {
-        this.$showDialog('warning', '注意', '请输入自定义后端 API 地址，或选择默认后端服务。');
+        this.dialogMessage = '请输入自定义后端 API 地址，或选择默认后端服务。';
+        this.openDialog();
         return false;
       }
       if (this.remoteConfig == '' && this.isShowRemoteConfig) {
-        this.$showDialog('warning', '注意', '请输入远程配置地址，或选择默认配置。');
+        this.dialogMessage = '请输入远程配置地址，或选择默认配置。';
+        this.openDialog();
         return false;
       }
       if (this.api.endsWith('/')) {
-        // 自动删除末尾的斜杠
         this.api = this.api.slice(0, -1);
       }
       this.result.subUrl = getSubLink(
@@ -262,50 +276,33 @@ export default {
           hideLoading();
         })
         .catch(() => {
-          this.$showDialog('error', '失败', '短链接生成失败 请检查短链接服务是否可用');
+          this.dialogMessage = '短链接生成失败 请检查短链接服务是否可用';
+          this.openDialog();
           hideLoading();
         });
+    },
+    openDialog() {
+      const dialog = this.$refs.errorDialog;
+      dialog.showModal();
+    },
+    closeDialog() {
+      const dialog = this.$refs.errorDialog;
+      dialog.close();
     },
   },
 };
 </script>
 
 <style scoped>
-.custom-div {
-  width: 100%;
-  margin: 0 auto;
+/* 弹窗样式 */
+dialog {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  text-align: center;
 }
-@media (min-width: 767.98px) {
-  .custom-div {
-    width: 90%;
-    margin: 0 auto;
-  }
-}
-@media (min-width: 991.98px) {
-  .custom-div {
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-@media (min-width: 1199.98px) {
-  .custom-div {
-    width: 70%;
-    margin: 0 auto;
-  }
-}
-
-.btn {
-  width: 100%;
-}
-
-.check-div {
-  display: flex;
-  justify-content: center; /* 水平居中 */
-  align-items: center; /* 垂直居中 */
-  height: 100%; /* 可以设置固定高度或者根据需求调整 */
-}
-
-.divider {
-  margin: 1%;
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
 }
 </style>
