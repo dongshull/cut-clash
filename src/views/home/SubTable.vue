@@ -10,7 +10,7 @@
                   <label class="form-label" for="add-user-email">订阅链接</label>
                   <textarea class="form-control" v-model.trim="urls" :placeholder="placeholder" rows="3"></textarea>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-5 col-md-6">
                   <label class="form-label" for="client">客户端</label>
                   <select class="form-select" id="client" v-model="target" @change="selectTarget">
                     <option v-for="option in targetOptions" :key="option" :value="option.value">
@@ -18,7 +18,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-7 col-md-6">
                   <label class="form-label" for="api">后端服务</label>
                   <select class="form-select" id="api" @change="selectApi">
                     <option value="">请选择后端</option>
@@ -31,7 +31,7 @@
                 <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
                   <input class="form-control" placeholder="自定义后端API地址" v-model="api" />
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-12">
                   <label class="form-label" for="remote">远程配置</label>
                   <select class="form-select" id="remote" @change="selectRemoteConfig">
                     <option value="">请选择配置</option>
@@ -41,9 +41,9 @@
                     <option value="manual">自定义远程配置地址</option>
                   </select>
                 </div>
-                <div class="col-12 col-md-2">
+                <div class="col-4 col-md-2">
                   <label class="form-label">&nbsp;</label>
-                  <button type="button" class="btn btn-warning w-100" @click="showMoreConfig">参数</button>
+                  <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowRemoteConfig">
                   <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
@@ -90,13 +90,13 @@
                   <input class="form-control" placeholder="点击转换链接" v-model.trim="result.subUrl" />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-success w-100" @click="getSubUrl()">转换</button>
+                  <button type="button" class="btn btn-success" @click="getSubUrl()">转换</button>
                 </div>
                 <div class="col-12 col-md-10">
                   <input class="form-control" placeholder="点击获取短链" v-model.trim="result.shortUrl" />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-primary w-100" @click="getShortUrl()">短链</button>
+                  <button type="button" class="btn btn-primary" @click="getShortUrl()">短链</button>
                 </div>
               </div>
             </div>
