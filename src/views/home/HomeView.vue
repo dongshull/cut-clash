@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <!-- 移除了底部黑色条幅 -->
+    <div class="landing-hero-blank"></div>
   </section>
 </template>
 
@@ -30,25 +30,39 @@ export default {
   background-size: cover;
 }
 
+.text-primary {
+  color: #0079c1 !important;
+}
+.display-6 {
+  font-size: 2.5rem;
+  color: #f33a2c;
+}
+
 .landing-hero .hero-animation-img {
   margin-bottom: -24rem;
 }
-
 @media (max-width: 1199.98px) {
   .landing-hero .hero-animation-img {
     margin-bottom: -18rem;
   }
 }
-
 @media (max-width: 575.98px) {
   .landing-hero .hero-animation-img {
     margin-bottom: -10rem;
   }
 }
 
-/* 去除可能导致黑色条幅的样式 */
 .landing-hero-blank {
-  display: none;
-  padding-top: 0;
+  padding-top: 20rem;
+}
+@media (max-width: 1199.98px) {
+  .landing-hero-blank {
+    padding-top: 15rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .landing-hero-blank {
+    padding-top: 7rem;
+  }
 }
 </style>
