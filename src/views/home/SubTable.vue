@@ -3,16 +3,16 @@
     <div class="col-12 col-lg-12 pt-4 pt-lg-0">
       <div class="tab-content p-0">
         <div class="tab-pane fade show active">
-          <div class="card mb-4">
+          <div class="card mb-4 doraemon-card">
             <div class="card-body">
               <div class="row mb-3 g-3">
                 <div class="col-12 col-md-12">
                   <label class="form-label" for="add-user-email">订阅链接</label>
-                  <textarea class="form-control" v-model.trim="urls" :placeholder="placeholder" rows="3"></textarea>
+                  <textarea class="form-control doraemon-textarea" v-model.trim="urls" :placeholder="placeholder" rows="3"></textarea>
                 </div>
                 <div class="col-5 col-md-6">
                   <label class="form-label" for="client">客户端</label>
-                  <select class="form-select" id="client" v-model="target" @change="selectTarget">
+                  <select class="form-select doraemon-select" id="client" v-model="target" @change="selectTarget">
                     <option v-for="option in targetOptions" :key="option" :value="option.value">
                       {{ option.text }}
                     </option>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-7 col-md-6">
                   <label class="form-label" for="api">后端服务</label>
-                  <select class="form-select" id="api" @change="selectApi">
+                  <select class="form-select doraemon-select" id="api" @change="selectApi">
                     <option value="">请选择后端</option>
                     <option v-for="option in apiUrl" :key="option" :value="option.value">
                       {{ option.text }}
@@ -29,11 +29,11 @@
                   </select>
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
-                  <input class="form-control" placeholder="自定义后端API地址" v-model="api" />
+                  <input class="form-control doraemon-input" placeholder="自定义后端API地址" v-model="api" />
                 </div>
                 <div class="col-12 col-md-12">
                   <label class="form-label" for="remote">远程配置</label>
-                  <select class="form-select" id="remote" @change="selectRemoteConfig">
+                  <select class="form-select doraemon-select" id="remote" @change="selectRemoteConfig">
                     <option value="">请选择配置</option>
                     <option v-for="option in remoteConfigOptions" :key="option" :value="option.value">
                       {{ option.text }}
@@ -43,39 +43,39 @@
                 </div>
                 <div class="col-4 col-md-2">
                   <label class="form-label">&nbsp;</label>
-                  <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
+                  <button type="button" class="btn btn-warning doraemon-btn" @click="showMoreConfig">参数</button>
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowRemoteConfig">
-                  <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
+                  <input class="form-control doraemon-input" placeholder="自定义远程配置地址" v-model="remoteConfig" />
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowMoreConfig">
                   <label class="form-label" for="add-user-email">可选参数</label>
                   <div class="row g-3">
                     <div class="col-12 col-md-12">
-                      <input class="form-control" placeholder="Include: 可选" v-model="moreConfig.include" />
+                      <input class="form-control doraemon-input" placeholder="Include: 可选" v-model="moreConfig.include" />
                     </div>
                     <div class="col-12 col-md-12">
-                      <input class="form-control" placeholder="Exclude: 可选" v-model="moreConfig.exclude" />
+                      <input class="form-control doraemon-input" placeholder="Exclude: 可选" v-model="moreConfig.exclude" />
                     </div>
                     <div class="col-md check-div" :style="{ display: 'flex', flexWrap: 'wrap' }">
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="emoji" v-model="moreConfig.emoji" />
+                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="emoji" v-model="moreConfig.emoji" />
                         <label class="form-check-label" for="emoji">Emoji</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="udp" v-model="moreConfig.udp" />
+                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="udp" v-model="moreConfig.udp" />
                         <label class="form-check-label" for="udp">开启UDP</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="sort" v-model="moreConfig.sort" />
+                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="sort" v-model="moreConfig.sort" />
                         <label class="form-check-label" for="sort">排序节点</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="scv" v-model="moreConfig.scv" />
+                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="scv" v-model="moreConfig.scv" />
                         <label class="form-check-label" for="scv">关闭证书检查</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="nodelist" v-model="moreConfig.list" />
+                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="nodelist" v-model="moreConfig.list" />
                         <label class="form-check-label" for="nodelist">Node List</label>
                       </div>
                     </div>
@@ -87,16 +87,16 @@
                   </div>
                 </div>
                 <div class="col-12 col-md-10">
-                  <input class="form-control" placeholder="点击转换链接" v-model.trim="result.subUrl" />
+                  <input class="form-control doraemon-input" placeholder="点击转换链接" v-model.trim="result.subUrl" />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-success" @click="getSubUrl()">转换</button>
+                  <button type="button" class="btn btn-success doraemon-btn" @click="getSubUrl()">转换</button>
                 </div>
                 <div class="col-12 col-md-10">
-                  <input class="form-control" placeholder="点击获取短链" v-model.trim="result.shortUrl" />
+                  <input class="form-control doraemon-input" placeholder="点击获取短链" v-model.trim="result.shortUrl" />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-primary" @click="getShortUrl()">短链</button>
+                  <button type="button" class="btn btn-primary doraemon-btn" @click="getShortUrl()">短链</button>
                 </div>
               </div>
             </div>
@@ -107,10 +107,10 @@
   </div>
 
   <!-- 弹窗结构 -->
-  <dialog id="errorDialog" ref="errorDialog">
+  <dialog id="errorDialog" ref="errorDialog" class="doraemon-dialog">
     <div>
       <p>{{ dialogMessage }}</p>
-      <button @click="closeDialog">关闭</button>
+      <button @click="closeDialog" class="btn btn-secondary doraemon-btn">关闭</button>
     </div>
   </dialog>
 </template>
@@ -294,15 +294,49 @@ export default {
 </script>
 
 <style scoped>
-/* 弹窗样式 */
-dialog {
+/* 哆啦A梦主题样式 */
+.doraemon-card {
+  border: 2px solid #1c9fe3; /* 哆啦A梦的经典蓝色 */
+  border-radius: 12px;
+  background-color: #ffffff; /* 白色背景 */
+}
+
+.doraemon-textarea,
+.doraemon-input,
+.doraemon-select {
+  border: 1px solid #1c9fe3; /* 蓝色边框 */
+  border-radius: 8px;
+  background-color: #e6f7ff; /* 淡蓝色背景 */
+  color: #1c9fe3; /* 字体颜色 */
+}
+
+.doraemon-btn {
+  background-color: #1c9fe3; /* 哆啦A梦的经典蓝色 */
+  border-color: #1c9fe3;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.doraemon-btn:hover {
+  background-color: #006dbf; /* 按钮悬停效果 */
+  border-color: #006dbf;
+}
+
+.doraemon-checkbox {
+  accent-color: #1c9fe3; /* 哆啦A梦蓝色的勾选框 */
+}
+
+.doraemon-dialog {
   border: none;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   padding: 20px;
   text-align: center;
+  background-color: #ffffff; /* 白色背景 */
+  color: #1c9fe3; /* 蓝色字体 */
 }
-dialog::backdrop {
+
+.doraemon-dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
 </style>
