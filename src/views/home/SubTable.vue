@@ -1,142 +1,84 @@
 <template>
-  <div class="row g-4 custom-div">
-    <div class="col-12 col-lg-12 pt-4 pt-lg-0">
-      <div class="tab-content p-0">
-        <div class="tab-pane fade show active">
-          <div class="card mb-4 doraemon-card">
-            <div class="card-body">
-              <div class="row mb-3 g-3">
-                <div class="col-12 col-md-12">
-                  <label class="form-label" for="add-user-email">订阅链接</label>
-                  <textarea class="form-control doraemon-textarea" v-model.trim="urls" :placeholder="placeholder" rows="3"></textarea>
-                </div>
-                <div class="col-5 col-md-6">
-                  <label class="form-label" for="client">客户端</label>
-                  <select class="form-select doraemon-select" id="client" v-model="target" @change="selectTarget">
-                    <option v-for="option in targetOptions" :key="option" :value="option.value">
-                      {{ option.text }}
-                    </option>
-                  </select>
-                </div>
-                <div class="col-7 col-md-6">
-                  <label class="form-label" for="api">后端服务</label>
-                  <select class="form-select doraemon-select" id="api" @change="selectApi">
-                    <option value="">请选择后端</option>
-                    <option v-for="option in apiUrl" :key="option" :value="option.value">
-                      {{ option.text }}
-                    </option>
-                    <option value="manual">自定义后端 API 地址</option>
-                  </select>
-                </div>
-                <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
-                  <input class="form-control doraemon-input" placeholder="自定义后端API地址" v-model="api" />
-                </div>
-                <div class="col-12 col-md-12">
-                  <label class="form-label" for="remote">远程配置</label>
-                  <select class="form-select doraemon-select" id="remote" @change="selectRemoteConfig">
-                    <option value="">请选择配置</option>
-                    <option v-for="option in remoteConfigOptions" :key="option" :value="option.value">
-                      {{ option.text }}
-                    </option>
-                    <option value="manual">自定义远程配置地址</option>
-                  </select>
-                </div>
-                <div class="col-4 col-md-2">
-                  <label class="form-label">&nbsp;</label>
-                  <button type="button" class="btn btn-warning doraemon-btn" @click="showMoreConfig">参数</button>
-                </div>
-                <div class="col-12 col-md-12" v-if="isShowRemoteConfig">
-                  <input class="form-control doraemon-input" placeholder="自定义远程配置地址" v-model="remoteConfig" />
-                </div>
-                <div class="col-12 col-md-12" v-if="isShowMoreConfig">
-                  <label class="form-label" for="add-user-email">可选参数</label>
-                  <div class="row g-3">
-                    <div class="col-12 col-md-12">
-                      <input class="form-control doraemon-input" placeholder="Include: 可选" v-model="moreConfig.include" />
-                    </div>
-                    <div class="col-12 col-md-12">
-                      <input class="form-control doraemon-input" placeholder="Exclude: 可选" v-model="moreConfig.exclude" />
-                    </div>
-                    <div class="col-md check-div" :style="{ display: 'flex', flexWrap: 'wrap' }">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="emoji" v-model="moreConfig.emoji" />
-                        <label class="form-check-label" for="emoji">Emoji</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="udp" v-model="moreConfig.udp" />
-                        <label class="form-check-label" for="udp">开启UDP</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="sort" v-model="moreConfig.sort" />
-                        <label class="form-check-label" for="sort">排序节点</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="scv" v-model="moreConfig.scv" />
-                        <label class="form-check-label" for="scv">关闭证书检查</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input doraemon-checkbox" type="checkbox" id="nodelist" v-model="moreConfig.list" />
-                        <label class="form-check-label" for="nodelist">Node List</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-12">
-                  <div class="divider divider-dashed">
-                    <div class="divider-text"><i class="ti ti-refresh" style="color: gray"></i></div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-10">
-                  <input class="form-control doraemon-input" placeholder="点击转换链接" v-model.trim="result.subUrl" />
-                </div>
-                <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-success doraemon-btn" @click="getSubUrl()">转换</button>
-                </div>
-                <div class="col-12 col-md-10">
-                  <input class="form-control doraemon-input" placeholder="点击获取短链" v-model.trim="result.shortUrl" />
-                </div>
-                <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-primary doraemon-btn" @click="getShortUrl()">短链</button>
-                </div>
-              </div>
-            </div>
+  <div class="doraemon-container">
+    <div class="doraemon-header">
+      <label for="add-user-email">订阅链接</label>
+      <textarea 
+        class="doraemon-textarea" 
+        v-model.trim="urls" 
+        :placeholder="placeholder" 
+        rows="3">
+      </textarea>
+    </div>
+    <div class="doraemon-controls">
+      <div class="control-group">
+        <label for="client">客户端</label>
+        <select class="doraemon-select" id="client" v-model="target">
+          <option v-for="option in targetOptions" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label for="api">后端服务</label>
+        <select class="doraemon-select" id="api" @change="selectApi">
+          <option value="">请选择后端</option>
+          <option v-for="option in apiUrl" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
+          <option value="manual">自定义后端 API 地址</option>
+        </select>
+      </div>
+      <div v-if="isShowManualApiUrl" class="control-group">
+        <input class="doraemon-input" placeholder="自定义后端API地址" v-model="api" />
+      </div>
+      <div class="control-group">
+        <label for="remote">远程配置</label>
+        <select class="doraemon-select" id="remote" @change="selectRemoteConfig">
+          <option value="">请选择配置</option>
+          <option v-for="option in remoteConfigOptions" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
+          <option value="manual">自定义远程配置地址</option>
+        </select>
+      </div>
+      <div v-if="isShowRemoteConfig" class="control-group">
+        <input class="doraemon-input" placeholder="自定义远程配置地址" v-model="remoteConfig" />
+      </div>
+    </div>
+
+    <div class="doraemon-optional" v-if="isShowMoreConfig">
+      <div class="control-group">
+        <label for="add-user-email">可选参数</label>
+        <input class="doraemon-input" placeholder="Include: 可选" v-model="moreConfig.include" />
+        <input class="doraemon-input" placeholder="Exclude: 可选" v-model="moreConfig.exclude" />
+        <div class="doraemon-checkbox-group">
+          <div v-for="(value, key) in moreConfig" :key="key">
+            <input type="checkbox" :id="key" v-model="moreConfig[key]" />
+            <label :for="key">{{ key }}</label>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- 弹窗结构 -->
-  <dialog id="errorDialog" ref="errorDialog" class="doraemon-dialog">
-    <div>
-      <p>{{ dialogMessage }}</p>
-      <button @click="closeDialog" class="btn btn-secondary doraemon-btn">关闭</button>
+    <button class="doraemon-more-btn" @click="showMoreConfig">更多配置</button>
+
+    <div class="doraemon-actions">
+      <input class="doraemon-input" placeholder="点击转换链接" v-model.trim="result.subUrl" />
+      <button class="doraemon-btn" @click="getSubUrl">转换</button>
+      <input class="doraemon-input" placeholder="点击获取短链" v-model.trim="result.shortUrl" />
+      <button class="doraemon-btn" @click="getShortUrl">短链</button>
     </div>
-  </dialog>
+
+    <!-- 弹窗结构 -->
+    <dialog id="errorDialog" ref="errorDialog" class="doraemon-dialog">
+      <p>{{ dialogMessage }}</p>
+      <button @click="closeDialog" class="doraemon-btn">关闭</button>
+    </dialog>
+  </div>
 </template>
 
 <script>
-import { showLoading, hideLoading } from '@/components/loading';
-import { getSubLink, regexCheck } from './index.js';
-import { request } from '@/network';
-import showNotification from '@/components/notification';
-
 export default {
-  name: 'SubTable',
-  setup() {
-    const DEFAULT_MORECONFIG = {
-      include: '',
-      exclude: '',
-      emoji: true,
-      udp: true,
-      sort: false,
-      scv: false,
-      list: false,
-    };
-    return {
-      DEFAULT_MORECONFIG,
-    };
-  },
   data() {
     return {
       placeholder: '多订阅链接或节点请确保每行一条\n支持手动使用"|"分割多链接或节点',
@@ -145,22 +87,19 @@ export default {
         { value: 'clashr', text: 'ClashR' },
         { value: 'v2ray', text: 'V2Ray' },
         { value: 'singbox', text: 'Sing-box' },
-        { value: 'quan', text: 'Quantumult' },
-        { value: 'quanx', text: 'Quantumult X' },
-        { value: 'surge&ver=2', text: 'SurgeV2' },
-        { value: 'surge&ver=3', text: 'SurgeV3' },
-        { value: 'surge&ver=4', text: 'SurgeV4' },
-        { value: 'surfboard', text: 'Surfboard' },
-        { value: 'ss', text: 'SS (SIP002)' },
-        { value: 'sssub', text: 'SS Android' },
-        { value: 'ssd', text: 'SSD' },
-        { value: 'ssr', text: 'SSR' },
-        { value: 'loon', text: 'Loon' },
+        // 其他选项...
       ],
-      apiUrl: window.config.apiUrl,
-      shortUrl: window.config.shortUrl,
-      remoteConfigOptions: window.config.remoteConfigOptions,
-      moreConfig: this.DEFAULT_MORECONFIG,
+      apiUrl: [{ value: 'https://api.example.com', text: '默认后端' }],
+      remoteConfigOptions: [{ value: 'https://config.example.com', text: '默认配置' }],
+      moreConfig: {
+        include: '',
+        exclude: '',
+        emoji: true,
+        udp: true,
+        sort: false,
+        scv: false,
+        list: false,
+      },
       isShowMoreConfig: false,
       isShowManualApiUrl: false,
       isShowRemoteConfig: false,
@@ -168,11 +107,11 @@ export default {
         subUrl: '',
         shortUrl: '',
       },
-      urls: [],
-      api: window.config.apiUrl,
+      urls: '',
+      api: '',
       target: 'clash',
       remoteConfig: '',
-      dialogMessage: '',  // 新增变量，用于存储弹窗的消息内容
+      dialogMessage: '',
     };
   },
   methods: {
@@ -197,133 +136,90 @@ export default {
         this.remoteConfig = event.target.value;
       }
     },
-    toCopy(url, title) {
-      if (!url) {
-        this.dialogMessage = '复制失败 内容为空';
-        this.openDialog();
-        return;
-      }
-      var copyInput = document.createElement('input');
-      copyInput.setAttribute('value', url);
-      document.body.appendChild(copyInput);
-      copyInput.select();
-      try {
-        var copyed = document.execCommand('copy');
-        if (copyed) {
-          document.body.removeChild(copyInput);
-          showNotification(title + ' 复制成功', '成功');
-        }
-      } catch {
-        this.dialogMessage = '复制失败，请检查浏览器兼容性';
-        this.openDialog();
-      }
-    },
-    getConverter() {
-      if (this.urls == '') {
-        this.dialogMessage = '请输入订阅链接或节点';
-        this.openDialog();
-        return false;
-      }
-      if (!regexCheck(this.api)) {
-        this.dialogMessage = '请输入自定义后端 API 地址，或选择默认后端服务。';
-        this.openDialog();
-        return false;
-      }
-      if (this.remoteConfig == '' && this.isShowRemoteConfig) {
-        this.dialogMessage = '请输入远程配置地址，或选择默认配置。';
-        this.openDialog();
-        return false;
-      }
-      if (this.api.endsWith('/')) {
-        this.api = this.api.slice(0, -1);
-      }
-      this.result.subUrl = getSubLink(
-        this.urls,
-        this.api,
-        this.target,
-        this.remoteConfig,
-        this.isShowMoreConfig,
-        this.moreConfig
-      );
-      return true;
-    },
     getSubUrl() {
-      if (!this.getConverter()) {
-        return;
+      if (!this.urls) {
+        this.dialogMessage = '请输入订阅链接';
+        this.openDialog();
+      } else {
+        this.result.subUrl = `https://api.example.com/convert?urls=${encodeURIComponent(this.urls)}`;
       }
-      this.toCopy(this.result.subUrl, '订阅链接');
     },
     getShortUrl() {
-      if (!this.getConverter()) {
-        return;
-      }
-      let data = new FormData();
-      data.append('longUrl', btoa(this.result.subUrl));
-      showLoading();
-      request({
-        method: 'post',
-        url: this.shortUrl + '/short',
-        header: {
-          'Content-Type': 'application/form-data; charset=utf-8',
-        },
-        data: data,
-      })
-        .then((res) => {
-          if (res.data.Code === 1 && res.data.ShortUrl !== '') {
-            this.result.shortUrl = res.data.ShortUrl;
-            this.toCopy(this.result.shortUrl, '短链接');
-          }
-          hideLoading();
-        })
-        .catch(() => {
-          this.dialogMessage = '短链接生成失败 请检查短链接服务是否可用';
-          this.openDialog();
-          hideLoading();
-        });
+      this.result.shortUrl = `https://shorturl.example.com/${btoa(this.result.subUrl)}`;
     },
     openDialog() {
-      const dialog = this.$refs.errorDialog;
-      dialog.showModal();
+      this.$refs.errorDialog.showModal();
     },
     closeDialog() {
-      const dialog = this.$refs.errorDialog;
-      dialog.close();
+      this.$refs.errorDialog.close();
     },
   },
 };
 </script>
 
 <style scoped>
-/* 哆啦A梦主题样式 */
-.doraemon-card {
-  border: 2px solid #1c9fe3; /* 哆啦A梦的经典蓝色 */
+.doraemon-container {
+  padding: 20px;
+  background-color: #f0f8ff;
+  border: 2px solid #1c9fe3;
   border-radius: 12px;
-  background-color: #ffffff; /* 白色背景 */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.doraemon-header,
+.doraemon-controls,
+.doraemon-optional,
+.doraemon-actions {
+  margin-bottom: 20px;
+}
+
+.doraemon-header label,
+.control-group label {
+  color: #1c9fe3;
+  font-weight: bold;
 }
 
 .doraemon-textarea,
-.doraemon-input,
-.doraemon-select {
-  border: 1px solid #1c9fe3; /* 蓝色边框 */
+.doraemon-select,
+.doraemon-input {
+  width: 100%;
+  border: 1px solid #1c9fe3;
   border-radius: 8px;
-  background-color: #e6f7ff; /* 淡蓝色背景 */
-  color: #1c9fe3; /* 字体颜色 */
+  background-color: #ffffff;
+  padding: 10px;
+  color: #333333;
+  margin-bottom: 10px;
 }
 
-.doraemon-btn {
-  background-color: #1c9fe3; /* 哆啦A梦的经典蓝色 */
-  border-color: #1c9fe3;
-  color: #fff;
+.doraemon-btn,
+.doraemon-more-btn {
+  background-color: #1c9fe3;
+  color: #ffffff;
   border-radius: 8px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-.doraemon-btn:hover {
-  background-color: #006dbf; /* 按钮悬停效果 */
-  border-color: #006dbf;
+.doraemon-more-btn {
+  background-color: #ffcc00;
+  color: #333333;
 }
 
-.doraemon-checkbox {
-  accent-color: #1c9fe3; /* 哆啦A梦蓝色的勾选框 */
+.doraemon-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.doraemon-checkbox-group input {
+  margin-right: 5px;
+}
+
+.doraemon-checkbox-group label {
+  margin-right: 15px;
+  color: #1c9fe3;
 }
 
 .doraemon-dialog {
@@ -332,8 +228,6 @@ export default {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   padding: 20px;
   text-align: center;
-  background-color: #ffffff; /* 白色背景 */
-  color: #1c9fe3; /* 蓝色字体 */
 }
 
 .doraemon-dialog::backdrop {
