@@ -31,19 +31,18 @@
                 <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
                   <input class="form-control" placeholder="自定义后端API地址" v-model="api" />
                 </div>
-                <div class="col-8 col-md-10">
-                  <label class="form-label" for="remote">远程配置</label>
-                  <select class="form-select" id="remote" @change="selectRemoteConfig">
-                    <option value="">请选择配置</option>
-                    <option v-for="option in remoteConfigOptions" :key="option" :value="option.value">
-                      {{ option.text }}
-                    </option>
-                    <option value="manual">自定义远程配置地址</option>
-                  </select>
-                </div>
-                <div class="col-4 col-md-2">
-                  <label class="form-label">&nbsp;</label>
-                  <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
+                <div class="col-12 col-md-10 d-flex align-items-end">
+                  <div class="flex-grow-1">
+                    <label class="form-label" for="remote">远程配置</label>
+                    <select class="form-select" id="remote" @change="selectRemoteConfig">
+                      <option value="">请选择配置</option>
+                      <option v-for="option in remoteConfigOptions" :key="option" :value="option.value">
+                        {{ option.text }}
+                      </option>
+                      <option value="manual">自定义远程配置地址</option>
+                    </select>
+                  </div>
+                  <button type="button" class="btn btn-warning ms-3" @click="showMoreConfig">参数</button>
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowRemoteConfig">
                   <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
@@ -106,7 +105,6 @@
     </div>
   </div>
 
-  <!-- 弹窗结构 -->
   <dialog id="errorDialog" ref="errorDialog">
     <div>
       <p>{{ dialogMessage }}</p>
@@ -172,7 +170,7 @@ export default {
       api: window.config.apiUrl,
       target: 'clash',
       remoteConfig: '',
-      dialogMessage: '',  // 新增变量，用于存储弹窗的消息内容
+      dialogMessage: '',
     };
   },
   methods: {
@@ -294,7 +292,6 @@ export default {
 </script>
 
 <style scoped>
-/* 弹窗样式 */
 dialog {
   border: none;
   border-radius: 8px;
@@ -304,5 +301,10 @@ dialog {
 }
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
+}
+
+.d-flex.align-items-end {
+  display: flex;
+  align-items: flex-end;
 }
 </style>
