@@ -5,7 +5,7 @@
         <div class="hero-text-box text-center">
           <h1 class="text-primary display-6 fw-bold">订阅转换</h1>
         </div>
-        <div class="hero-animation-img">
+        <div class="hero-animation-img glass-effect">
           <SubTable />
         </div>
       </div>
@@ -33,21 +33,28 @@ export default {
 .text-primary {
   color: #0079c1 !important;
 }
+
 .display-6 {
   font-size: 2.5rem;
   color: #f33a2c;
 }
 
-.landing-hero .hero-animation-img {
+.hero-animation-img {
   margin-bottom: -24rem;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 20px;
 }
+
 @media (max-width: 1199.98px) {
-  .landing-hero .hero-animation-img {
+  .hero-animation-img {
     margin-bottom: -18rem;
   }
 }
+
 @media (max-width: 575.98px) {
-  .landing-hero .hero-animation-img {
+  .hero-animation-img {
     margin-bottom: -10rem;
   }
 }
@@ -55,11 +62,13 @@ export default {
 .landing-hero-blank {
   padding-top: 20rem;
 }
+
 @media (max-width: 1199.98px) {
   .landing-hero-blank {
     padding-top: 15rem;
   }
 }
+
 @media (max-width: 575.98px) {
   .landing-hero-blank {
     padding-top: 7rem;
