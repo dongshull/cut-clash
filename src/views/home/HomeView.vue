@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <div class="landing-hero-blank"></div>
+    <!-- 移除了底部黑色条幅 -->
   </section>
 </template>
 
@@ -29,32 +29,26 @@ export default {
   background: url('/public/doraemon-image.jpeg') no-repeat center center;
   background-size: cover;
 }
+
 .landing-hero .hero-animation-img {
   margin-bottom: -24rem;
 }
+
 @media (max-width: 1199.98px) {
   .landing-hero .hero-animation-img {
     margin-bottom: -18rem;
   }
 }
+
 @media (max-width: 575.98px) {
   .landing-hero .hero-animation-img {
     margin-bottom: -10rem;
   }
 }
 
-/* Landing Hero Blank */
+/* 去除可能导致黑色条幅的样式 */
 .landing-hero-blank {
-  padding-top: 20rem;
-}
-@media (max-width: 1199.98px) {
-  .landing-hero-blank {
-    padding-top: 15rem;
-  }
-}
-@media (max-width: 575.98px) {
-  .landing-hero-blank {
-    padding-top: 7rem;
-  }
+  display: none;
+  padding-top: 0;
 }
 </style>
