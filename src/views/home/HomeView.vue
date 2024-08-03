@@ -5,8 +5,10 @@
         <div class="hero-text-box text-center">
           <h1 class="text-primary display-6 fw-bold">订阅转换</h1>
         </div>
-        <div class="hero-animation-img glass-effect">
-          <SubTable />
+        <div class="hero-animation-img">
+          <div class="glass-effect">
+            <SubTable />
+          </div>
         </div>
       </div>
     </div>
@@ -25,53 +27,39 @@ export default {
 </script>
 
 <style scoped>
-.light-style .landing-hero {
+.landing-hero {
   background: url('/public/doraemon-image.jpeg') no-repeat center center;
   background-size: cover;
+  min-height: 100vh;
 }
 
-.text-primary {
-  color: #0079c1 !important;
-}
-
-.display-6 {
-  font-size: 2.5rem;
-  color: #f33a2c;
-}
-
-.hero-animation-img {
-  margin-bottom: -24rem;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 15px;
+.glass-effect {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
   padding: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.landing-hero .hero-animation-img {
+  margin-bottom: 0;
+  padding-top: 5rem;
 }
 
 @media (max-width: 1199.98px) {
-  .hero-animation-img {
-    margin-bottom: -18rem;
+  .landing-hero .hero-animation-img {
+    padding-top: 3rem;
   }
 }
 
 @media (max-width: 575.98px) {
-  .hero-animation-img {
-    margin-bottom: -10rem;
+  .landing-hero .hero-animation-img {
+    padding-top: 2rem;
   }
 }
 
 .landing-hero-blank {
-  padding-top: 20rem;
-}
-
-@media (max-width: 1199.98px) {
-  .landing-hero-blank {
-    padding-top: 15rem;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .landing-hero-blank {
-    padding-top: 7rem;
-  }
+  padding-top: 0;
+  min-height: 0;
 }
 </style>
