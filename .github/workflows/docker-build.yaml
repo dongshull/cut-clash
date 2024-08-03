@@ -3,7 +3,10 @@ name: "docker build"
 on:
   push:
     branches:
-      - master
+      - main
+  pull_request:
+    branches:
+      - main
     paths-ignore:
       - README.md
       - .github/**
