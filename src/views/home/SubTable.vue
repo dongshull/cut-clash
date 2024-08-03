@@ -31,7 +31,7 @@
                 <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
                   <input class="form-control" placeholder="自定义后端API地址" v-model="api" />
                 </div>
-                <div class="col-8 col-md-10">
+                <div class="col-12 col-md-12">
                   <label class="form-label" for="remote">远程配置</label>
                   <select class="form-select" id="remote" @change="selectRemoteConfig">
                     <option value="">请选择配置</option>
