@@ -2,7 +2,7 @@
   <section id="hero-animation">
     <div id="landingHero" class="section-py landing-hero position-relative">
       <div class="container">
-        <div class="hero-text-box text-center">
+        <div class="hero-text-box text-center transparent-background">
           <h1 class="text-primary display-6 fw-bold">订阅转换</h1>
         </div>
         <div class="hero-animation-img">
@@ -30,10 +30,16 @@ export default {
   background: url('/public/doraemon-image.jpeg') no-repeat center center;
   background-size: cover;
   min-height: 100vh;
+  border-radius: 0;
+}
+
+.transparent-background {
+  background-color: transparent !important;
 }
 
 .hero-text-box {
   background: transparent;
+  padding: 2rem 0;
 }
 
 .landing-hero .hero-animation-img {
