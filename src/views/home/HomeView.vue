@@ -6,9 +6,7 @@
           <h1 class="text-primary display-6 fw-bold">订阅转换</h1>
         </div>
         <div class="hero-animation-img">
-          <div class="glass-effect">
-            <SubTable />
-          </div>
+          <SubTable />
         </div>
       </div>
     </div>
@@ -18,6 +16,7 @@
 
 <script>
 import SubTable from './SubTable.vue';
+
 export default {
   name: 'SubconverterView',
   components: {
@@ -33,12 +32,8 @@ export default {
   min-height: 100vh;
 }
 
-.glass-effect {
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 0;
+.hero-text-box {
+  background: transparent;
 }
 
 .landing-hero .hero-animation-img {
