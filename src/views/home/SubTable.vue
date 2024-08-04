@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-12 col-md-2">
                   <label class="form-label">&nbsp;</label>
-                  <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
+                  <button type="button" class="btn btn-warning align-button-select" @click="showMoreConfig">参数</button>
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowRemoteConfig">
                   <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
@@ -184,8 +184,8 @@ export default {
         this.api = '';
         this.isShowManualApiUrl = true;
       } else {
-        this.isShowManualApiUrl = false;
         this.api = event.target.value;
+        this.isShowManualApiUrl = false;
       }
     },
     selectRemoteConfig(event) {
@@ -193,144 +193,107 @@ export default {
         this.remoteConfig = '';
         this.isShowRemoteConfig = true;
       } else {
-        this.isShowRemoteConfig = false;
         this.remoteConfig = event.target.value;
+        this.isShowRemoteConfig = false;
       }
     },
-    toCopy(url, title) {
-      if (!url) {
-        this.dialogMessage = '复制失败 内容为空';
-        this.openDialog();
+    selectTarget(event) {
+      this.target = event.target.value;
+    },
+    async getSubUrl() {
+      if (!this.urls) {
+        this.showError('没有发现订阅链接');
         return;
       }
-      var copyInput = document.createElement('input');
-      copyInput.setAttribute('value', url);
-      document.body.appendChild(copyInput);
-      copyInput.select();
+      showLoading('订阅链接转换中...');
+      const url = `${this.api}/sub?target=${this.target}&url=${encodeURIComponent(
+        this.urls
+      )}&insert=false&emoji=true&list=false&udp=true&tfo=false&sort=false&scv=false`;
       try {
-        var copyed = document.execCommand('copy');
-        if (copyed) {
-          document.body.removeChild(copyInput);
-          showNotification(title + ' 复制成功', '成功');
-        }
-      } catch {
-        this.dialogMessage = '复制失败，请检查浏览器兼容性';
-        this.openDialog();
+        this.result.subUrl = await getSubLink(url, 'sub');
+      } catch (error) {
+        this.showError('订阅链接转换失败');
+      } finally {
+        hideLoading();
       }
     },
-    getConverter() {
-      if (this.urls == '') {
-        this.dialogMessage = '请输入订阅链接或节点';
-        this.openDialog();
-        return false;
-      }
-      if (!regexCheck(this.api)) {
-        this.dialogMessage = '请输入自定义后端 API 地址，或选择默认后端服务。';
-        this.openDialog();
-        return false;
-      }
-      if (this.remoteConfig == '' && this.isShowRemoteConfig) {
-        this.dialogMessage = '请输入远程配置地址，或选择默认配置。';
-        this.openDialog();
-        return false;
-      }
-      if (this.api.endsWith('/')) {
-        this.api = this.api.slice(0, -1);
-      }
-      this.result.subUrl = getSubLink(
-        this.urls,
-        this.api,
-        this.target,
-        this.remoteConfig,
-        this.isShowMoreConfig,
-        this.moreConfig
-      );
-      return true;
-    },
-    getSubUrl() {
-      if (!this.getConverter()) {
+    async getShortUrl() {
+      if (!this.result.subUrl) {
+        this.showError('没有可转换的链接');
         return;
       }
-      this.toCopy(this.result.subUrl, '订阅链接');
-    },
-    getShortUrl() {
-      if (!this.getConverter()) {
-        return;
-      }
-      let data = new FormData();
-      data.append('longUrl', btoa(this.result.subUrl));
-      showLoading();
-      request({
-        method: 'post',
-        url: this.shortUrl + '/short',
-        header: {
-          'Content-Type': 'application/form-data; charset=utf-8',
-        },
-        data: data,
-      })
-        .then((res) => {
-          if (res.data.Code === 1 && res.data.ShortUrl !== '') {
-            this.result.shortUrl = res.data.ShortUrl;
-            this.toCopy(this.result.shortUrl, '短链接');
-          }
-          hideLoading();
-        })
-        .catch(() => {
-          this.dialogMessage = '短链接生成失败 请检查短链接服务是否可用';
-          this.openDialog();
-          hideLoading();
+      const longUrl = this.result.subUrl;
+      showLoading('链接转换中...');
+      try {
+        const { data } = await request({
+          url: `${this.shortUrl}/url/short`,
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          data: JSON.stringify({
+            longUrl: longUrl,
+          }),
         });
+        this.result.shortUrl = data.data.shortUrl;
+        hideLoading();
+        showNotification('链接转换成功');
+      } catch (error) {
+        hideLoading();
+        this.showError('链接转换失败');
+      }
     },
-    openDialog() {
-      const dialog = this.$refs.errorDialog;
-      dialog.showModal();
+    showError(message) {
+      this.dialogMessage = message;
+      this.$refs.errorDialog.showModal();
     },
     closeDialog() {
-      const dialog = this.$refs.errorDialog;
-      dialog.close();
+      this.$refs.errorDialog.close();
     },
   },
 };
 </script>
 
 <style scoped>
-/* 毛玻璃效果样式 */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* 弹窗样式 */
-dialog {
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+.custom-div {
+  background-color: #f0f0f0;
+  border-radius: 10px;
   padding: 20px;
-  text-align: center;
 }
-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.5);
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
 }
-
-/* 按钮样式 */
-button {
-  background-color: #4CAF50; /* 绿色背景色 */
-  color: white; /* 白色文字 */
+textarea.form-control {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 10px;
+}
+button.align-button-select {
+  height: 38px; /* 确保按钮高度与下拉框一致 */
+  line-height: 38px; /* 设置行高使文字居中 */
+  padding: 0 20px; /* 调整内边距 */
+  background-color: #ffcc00;
+  color: white;
   border: none;
   border-radius: 4px;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #45a049; /* 鼠标悬停的颜色 */
+button.align-button-select:hover {
+  background-color: #e6b800;
+}
+
+select.form-select {
+  height: 38px; /* 确保下拉框高度与按钮一致 */
+}
+
+.dialog {
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 </style>
