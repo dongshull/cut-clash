@@ -30,7 +30,7 @@
                     </option>
                     <option value="manual">自定义后端 API 地址</option>
                   </select>
-                  <input v-if="isShowManualApiUrl" class="form-control mt-2" v-model="api" />
+                  <input v-if="isShowManualApiUrl" v-model="api" />
                 </div>
 
                 <!-- 远程配置 -->
