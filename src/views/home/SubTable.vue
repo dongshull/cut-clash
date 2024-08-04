@@ -43,10 +43,10 @@
                 </div>
                 <div class="col-12 col-md-2 d-flex align-items-end">
                   <label class="form-label">&nbsp;</label>
-                  <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
+                  <button type="button" class="btn btn-warning w-100" @click="showMoreConfig">参数</button>
                 </div>
-                <<div class="col-12" v-if="isShowMoreConfig">">
-                  <input class="form-control" placeholder="自定义远程配置地址：" v-model="remoteConfig" />
+                <div class="col-12" v-if="isShowMoreConfig">
+                  <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowMoreConfig">
                   <label class="form-label" for="add-user-email">可选参数</label>
