@@ -51,7 +51,7 @@
                 <div class="col-12 col-md-12" v-if="isShowMoreConfig">
                   <label class="form-label" for="add-user-email">可选参数</label>
                   <div class="row g-3">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 d-flex flex-wrap">
                       <input class="form-control" placeholder="Include: 可选" v-model="moreConfig.include" />
                     </div>
                     <div class="col-12 d-flex flex-wrap">
