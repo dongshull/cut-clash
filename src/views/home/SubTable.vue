@@ -1,9 +1,9 @@
 <template>
   <div class="row g-4 custom-div">
     <div class="col-12 col-lg-12 pt-4 pt-lg-0">
-      <div class="tab-content p-0 transparent-effect">
+      <div class="tab-content p-0 glass-effect">
         <div class="tab-pane fade show active">
-          <div class="card mb-4 transparent-effect">
+          <div class="card mb-4 glass-effect">
             <div class="card-body">
               <div class="row mb-3 g-3">
                 <div class="col-12">
@@ -107,7 +107,7 @@
   </div>
 
   <!-- 弹窗结构 -->
-  <dialog id="errorDialog" ref="errorDialog" class="transparent-effect">
+  <dialog id="errorDialog" ref="errorDialog" class="glass-effect">
     <div>
       <p>{{ dialogMessage }}</p>
       <button @click="closeDialog">关闭</button>
@@ -294,10 +294,12 @@ export default {
 </script>
 
 <style scoped>
-/* 透明效果样式 */
-.transparent-effect {
-  background: transparent;
+/* 毛玻璃效果样式 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
