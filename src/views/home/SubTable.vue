@@ -6,97 +6,85 @@
           <div class="card mb-4 glass-effect">
             <div class="card-body">
               <div class="row mb-3 g-3">
-                <div class="col-12 col-md-12">
+                <!-- 订阅链接 -->
+                <div class="col-12">
                   <label class="form-label" for="add-user-email">订阅链接</label>
                   <textarea class="form-control" v-model.trim="urls" :placeholder="placeholder" rows="3"></textarea>
                 </div>
-                <div class="col-5 col-md-6">
+
+                <!-- 客户端和后端服务 -->
+                <div class="col-12 col-md-6">
                   <label class="form-label" for="client">客户端</label>
                   <select class="form-select" id="client" v-model="target" @change="selectTarget">
-                    <option v-for="option in targetOptions" :key="option" :value="option.value">
+                    <option v-for="option in targetOptions" :key="option.value" :value="option.value">
                       {{ option.text }}
                     </option>
                   </select>
                 </div>
-                <div class="col-7 col-md-6">
+                <div class="col-12 col-md-6">
                   <label class="form-label" for="api">后端服务</label>
                   <select class="form-select" id="api" @change="selectApi">
                     <option value="">请选择后端</option>
-                    <option v-for="option in apiUrl" :key="option" :value="option.value">
+                    <option v-for="option in apiUrl" :key="option.value" :value="option.value">
                       {{ option.text }}
                     </option>
                     <option value="manual">自定义后端 API 地址</option>
                   </select>
+                  <input v-if="isShowManualApiUrl" class="form-control mt-2" placeholder="自定义后端API地址" v-model="api" />
                 </div>
-                <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
-                  <input class="form-control" placeholder="自定义后端API地址" v-model="api" />
-                </div>
-                <div class="col-8 col-md-10">
+
+                <!-- 远程配置 -->
+                <div class="col-12 col-md-10">
                   <label class="form-label" for="remote">远程配置</label>
                   <select class="form-select" id="remote" @change="selectRemoteConfig">
                     <option value="">请选择配置</option>
-                    <option v-for="option in remoteConfigOptions" :key="option" :value="option.value">
+                    <option v-for="option in remoteConfigOptions" :key="option.value" :value="option.value">
                       {{ option.text }}
                     </option>
                     <option value="manual">自定义远程配置地址</option>
                   </select>
+                  <input v-if="isShowRemoteConfig" class="form-control mt-2" placeholder="自定义远程配置地址" v-model="remoteConfig" />
                 </div>
-                <div class="col-4 col-md-2">
-                  <label class="form-label">&nbsp;</label>
-                  <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
+                <div class="col-12 col-md-2 d-flex align-items-end">
+                  <button type="button" class="btn btn-warning w-100" @click="showMoreConfig">参数</button>
                 </div>
-                <div class="col-12 col-md-12" v-if="isShowRemoteConfig">
-                  <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
-                </div>
-                <div class="col-12 col-md-12" v-if="isShowMoreConfig">
-                  <label class="form-label" for="add-user-email">可选参数</label>
+
+                <!-- 更多配置 -->
+                <div class="col-12" v-if="isShowMoreConfig">
+                  <label class="form-label">可选参数</label>
                   <div class="row g-3">
-                    <div class="col-12 col-md-12">
+                    <div class="col-12 col-md-6">
                       <input class="form-control" placeholder="Include: 可选" v-model="moreConfig.include" />
                     </div>
-                    <div class="col-12 col-md-12">
+                    <div class="col-12 col-md-6">
                       <input class="form-control" placeholder="Exclude: 可选" v-model="moreConfig.exclude" />
                     </div>
-                    <div class="col-md check-div" :style="{ display: 'flex', flexWrap: 'wrap' }">
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="emoji" v-model="moreConfig.emoji" />
-                        <label class="form-check-label" for="emoji">Emoji</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="udp" v-model="moreConfig.udp" />
-                        <label class="form-check-label" for="udp">开启UDP</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="sort" v-model="moreConfig.sort" />
-                        <label class="form-check-label" for="sort">排序节点</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="scv" v-model="moreConfig.scv" />
-                        <label class="form-check-label" for="scv">关闭证书检查</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="nodelist" v-model="moreConfig.list" />
-                        <label class="form-check-label" for="nodelist">Node List</label>
+                    <div class="col-12 d-flex flex-wrap">
+                      <div class="form-check form-check-inline" v-for="(label, key) in checkboxOptions" :key="key">
+                        <input class="form-check-input" type="checkbox" :id="key" v-model="moreConfig[key]" />
+                        <label class="form-check-label" :for="key">{{ label }}</label>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-md-12">
+
+                <!-- 链接转换 -->
+                <div class="col-12">
                   <div class="divider divider-dashed">
                     <div class="divider-text"><i class="ti ti-refresh" style="color: gray"></i></div>
                   </div>
                 </div>
                 <div class="col-12 col-md-10">
-                  <input class="form-control" placeholder="点击转换链接" v-model.trim="result.subUrl" />
+                  <input class="form-control" placeholder="点击转换链接" v-model.trim="result.subUrl" readonly />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-success" @click="getSubUrl()">转换</button>
+                  <button type="button" class="btn btn-success w-100" @click="getSubUrl">转换</button>
                 </div>
                 <div class="col-12 col-md-10">
-                  <input class="form-control" placeholder="点击获取短链" v-model.trim="result.shortUrl" />
+                  <input class="form-control" placeholder="点击获取短链" v-model.trim="result.shortUrl" readonly />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-primary" @click="getShortUrl()">短链</button>
+                  <button type="button" class="btn btn-primary w-100" @click="getShortUrl">短链</button>
                 </div>
               </div>
             </div>
@@ -104,37 +92,35 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- 弹窗结构 -->
-  <dialog id="errorDialog" ref="errorDialog" class="glass-effect">
-    <div>
-      <p>{{ dialogMessage }}</p>
-      <button @click="closeDialog">关闭</button>
-    </div>
-  </dialog>
+    <!-- 弹窗结构 -->
+    <dialog id="errorDialog" ref="errorDialog" class="glass-effect">
+      <div>
+        <p>{{ dialogMessage }}</p>
+        <button @click="closeDialog">关闭</button>
+      </div>
+    </dialog>
+  </div>
 </template>
 
 <script>
 import { showLoading, hideLoading } from '@/components/loading';
 import { getSubLink, regexCheck } from './index.js';
 import { request } from '@/network';
-import showNotification from '@/components/notification';
 
 export default {
   name: 'SubTable',
   setup() {
-    const DEFAULT_MORECONFIG = {
-      include: '',
-      exclude: '',
-      emoji: true,
-      udp: true,
-      sort: false,
-      scv: false,
-      list: false,
-    };
     return {
-      DEFAULT_MORECONFIG,
+      DEFAULT_MORECONFIG: {
+        include: '',
+        exclude: '',
+        emoji: true,
+        udp: true,
+        sort: false,
+        scv: false,
+        list: false,
+      },
     };
   },
   data() {
@@ -172,71 +158,56 @@ export default {
       api: window.config.apiUrl,
       target: 'clash',
       remoteConfig: '',
-      dialogMessage: '',  // 新增变量，用于存储弹窗的消息内容
+      dialogMessage: '',
     };
+  },
+  computed: {
+    checkboxOptions() {
+      return {
+        emoji: 'Emoji',
+        udp: '开启UDP',
+        sort: '排序节点',
+        scv: '关闭证书检查',
+        list: 'Node List',
+      };
+    },
   },
   methods: {
     showMoreConfig() {
       this.isShowMoreConfig = !this.isShowMoreConfig;
     },
     selectApi(event) {
-      if (event.target.value == 'manual') {
-        this.api = '';
-        this.isShowManualApiUrl = true;
-      } else {
-        this.isShowManualApiUrl = false;
+      this.isShowManualApiUrl = event.target.value === 'manual';
+      if (!this.isShowManualApiUrl) {
         this.api = event.target.value;
       }
     },
     selectRemoteConfig(event) {
-      if (event.target.value == 'manual') {
-        this.remoteConfig = '';
-        this.isShowRemoteConfig = true;
-      } else {
-        this.isShowRemoteConfig = false;
+      this.isShowRemoteConfig = event.target.value === 'manual';
+      if (!this.isShowRemoteConfig) {
         this.remoteConfig = event.target.value;
       }
     },
-    toCopy(url, title) {
-      if (!url) {
-        this.dialogMessage = '复制失败 内容为空';
-        this.openDialog();
-        return;
-      }
-      var copyInput = document.createElement('input');
-      copyInput.setAttribute('value', url);
-      document.body.appendChild(copyInput);
-      copyInput.select();
-      try {
-        var copyed = document.execCommand('copy');
-        if (copyed) {
-          document.body.removeChild(copyInput);
-          showNotification(title + ' 复制成功', '成功');
-        }
-      } catch {
-        this.dialogMessage = '复制失败，请检查浏览器兼容性';
-        this.openDialog();
-      }
-    },
-    getConverter() {
-      if (this.urls == '') {
-        this.dialogMessage = '请输入订阅链接或节点';
-        this.openDialog();
+    validateInputs() {
+      if (!this.urls) {
+        this.showDialog('请输入订阅链接或节点');
         return false;
       }
       if (!regexCheck(this.api)) {
-        this.dialogMessage = '请输入自定义后端 API 地址，或选择默认后端服务。';
-        this.openDialog();
+        this.showDialog('请输入自定义后端 API 地址，或选择默认后端服务。');
         return false;
       }
-      if (this.remoteConfig == '' && this.isShowRemoteConfig) {
-        this.dialogMessage = '请输入远程配置地址，或选择默认配置。';
-        this.openDialog();
+      if (!this.remoteConfig && this.isShowRemoteConfig) {
+        this.showDialog('请输入远程配置地址，或选择默认配置。');
         return false;
       }
-      if (this.api.endsWith('/')) {
-        this.api = this.api.slice(0, -1);
+      return true;
+    },
+    getConverter() {
+      if (!this.validateInputs()) {
+        return false;
       }
+      this.api = this.api.replace(/\/$/, '');
       this.result.subUrl = getSubLink(
         this.urls,
         this.api,
@@ -248,46 +219,51 @@ export default {
       return true;
     },
     getSubUrl() {
-      if (!this.getConverter()) {
-        return;
+      if (this.getConverter()) {
+        this.toCopy(this.result.subUrl, '订阅链接');
       }
-      this.toCopy(this.result.subUrl, '订阅链接');
     },
     getShortUrl() {
       if (!this.getConverter()) {
         return;
       }
-      let data = new FormData();
+      const data = new FormData();
       data.append('longUrl', btoa(this.result.subUrl));
       showLoading();
       request({
         method: 'post',
         url: this.shortUrl + '/short',
-        header: {
+        headers: {
           'Content-Type': 'application/form-data; charset=utf-8',
         },
-        data: data,
+        data,
       })
-        .then((res) => {
-          if (res.data.Code === 1 && res.data.ShortUrl !== '') {
-            this.result.shortUrl = res.data.ShortUrl;
-            this.toCopy(this.result.shortUrl, '短链接');
-          }
-          hideLoading();
+        .then(res => {
+          this.result.shortUrl = res.data.data.shortUrl;
+          this.toCopy(this.result.shortUrl, '短链');
         })
         .catch(() => {
-          this.dialogMessage = '短链接生成失败 请检查短链接服务是否可用';
-          this.openDialog();
+          this.showDialog('短链获取失败');
+        })
+        .finally(() => {
           hideLoading();
         });
     },
-    openDialog() {
-      const dialog = this.$refs.errorDialog;
-      dialog.showModal();
+    toCopy(val, type) {
+      navigator.clipboard.writeText(val)
+        .then(() => {
+          this.showDialog(`${type}已复制`);
+        })
+        .catch(() => {
+          this.showDialog('复制失败，请手动复制');
+        });
+    },
+    showDialog(message) {
+      this.dialogMessage = message;
+      this.$refs.errorDialog.showModal();
     },
     closeDialog() {
-      const dialog = this.$refs.errorDialog;
-      dialog.close();
+      this.$refs.errorDialog.close();
     },
   },
 };
