@@ -41,7 +41,7 @@
                     <option value="manual">自定义远程配置地址</option>
                   </select>
                 </div>
-                <div class="col-8 col-md-4">
+                <div class="col-6 col-md-3">
                   <label class="form-label">&nbsp;</label>
                   <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
                 </div>
