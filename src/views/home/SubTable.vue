@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-12 col-md-2 d-flex align-items-end">
                   <label class="form-label">&nbsp;</label>
-                  <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
+                  <button type="button" class="btn btn-warning w-100" @click="showMoreConfig">参数</button>
                 </div>
                 <div class="col-12" v-if="isShowMoreConfig">
                   <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
@@ -90,13 +90,13 @@
                   <input class="form-control" placeholder="点击转换链接" v-model.trim="result.subUrl" />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-success" @click="getSubUrl()">转换</button>
+                  <button type="button" class="btn btn-success w-100" @click="getSubUrl">转换</button>
                 </div>
                 <div class="col-12 col-md-10">
                   <input class="form-control" placeholder="点击获取短链" v-model.trim="result.shortUrl" />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-primary" @click="getShortUrl()">短链</button>
+                  <button type="button" class="btn btn-primary w-100" @click="getShortUrl">短链</button>
                 </div>
               </div>
             </div>
