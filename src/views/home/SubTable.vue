@@ -318,7 +318,7 @@ dialog::backdrop {
 
 /* 按钮样式 */
 button {
-  background-color: #4CAF50; /* 绿色背景色 */
+  background-color: #008BFF; /* 绿色背景色 */
   color: white; /* 白色文字 */
   border: none;
   border-radius: 4px;
@@ -331,6 +331,6 @@ button {
 }
 
 button:hover {
-  background-color: #45a049; /* 鼠标悬停的颜色 */
+  background-color: #FF7F50; /* 鼠标悬停的颜色 */
 }
 </style>
