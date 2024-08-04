@@ -3,7 +3,6 @@
     <div id="landingHero" class="section-py landing-hero position-relative">
       <div class="container">
         <div class="hero-text-box text-center transparent-background">
-          <h1 class="text-primary display-6 fw-bold">订阅转换</h1>
         </div>
         <div class="hero-animation-img">
           <SubTable />
