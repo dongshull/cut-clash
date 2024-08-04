@@ -29,8 +29,6 @@
                       {{ option.text }}
                     </option>
                     <option value="manual">自定义后端 API 地址</option>
-                  </select>
-                  <input v-if="isShowManualApiUrl" v-model="api" />
                 </div>
 
                 <!-- 远程配置 -->
