@@ -267,7 +267,7 @@ export default {
           'Content-Type': 'application/form-data; charset=utf-8',
         },
         data: data,
-       })
+      })
         .then((res) => {
           if (res.data.Code === 1 && res.data.ShortUrl !== '') {
             this.result.shortUrl = res.data.ShortUrl;
