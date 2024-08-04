@@ -75,16 +75,16 @@
                   </div>
                 </div>
                 <div class="col-12 col-md-10">
-                  <input class="form-control" placeholder="点击转换链接" v-model.trim="result.subUrl" readonly />
+                  <input class="form-control" placeholder="点击转换链接" v-model.trim="result.subUrl" />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-success w-100" @click="getSubUrl">转换</button>
+                   <button type="button" class="btn btn-success" @click="getSubUrl()">转换</button>
                 </div>
                 <div class="col-12 col-md-10">
-                  <input class="form-control" placeholder="点击获取短链" v-model.trim="result.shortUrl" readonly />
+                  <input class="form-control" placeholder="点击获取短链" v-model.trim="result.shortUrl" />
                 </div>
                 <div class="col-12 col-md-2">
-                  <button type="button" class="btn btn-primary w-100" @click="getShortUrl">短链</button>
+                  <button type="button" class="btn btn-primary" @click="getShortUrl()">短链</button>
                 </div>
               </div>
             </div>
