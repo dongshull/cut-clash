@@ -4,7 +4,9 @@
       <div class="container">
         <div class="hero-text-box text-center transparent-background">
         </div>
-        <SubTable />
+        <div class="hero-animation-img">
+          <SubTable />
+        </div>
       </div>
     </div>
     <div class="landing-hero-blank"></div>
@@ -12,7 +14,7 @@
 </template>
 
 <script>
-const SubTable = () => import('./SubTable.vue');
+import SubTable from './SubTable.vue';
 
 export default {
   name: 'SubconverterView',
@@ -27,30 +29,31 @@ export default {
   background: url('/public/doraemon-image.jpeg') no-repeat center center;
   background-size: cover;
   min-height: 100vh;
+  border-radius: 0;
 }
 
-.transparent-background,
-.hero-text-box {
-  background-color: transparent;
+.transparent-background {
+  background-color: transparent !important;
 }
 
 .hero-text-box {
+  background: transparent;
   padding: 2rem 0;
 }
 
-.hero-animation-img {
-  padding-top: 5rem;
+.landing-hero .hero-animation-img {
   margin-bottom: 0;
+  padding-top: 5rem;
 }
 
 @media (max-width: 1199.98px) {
-  .hero-animation-img {
+  .landing-hero .hero-animation-img {
     padding-top: 3rem;
   }
 }
 
 @media (max-width: 575.98px) {
-  .hero-animation-img {
+  .landing-hero .hero-animation-img {
     padding-top: 2rem;
   }
 }
