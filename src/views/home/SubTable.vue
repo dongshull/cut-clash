@@ -278,6 +278,11 @@ export default {
         .catch(() => {
           this.$showDialog('error', '失败', '短链接生成失败 请检查短链接服务是否可用');
           hideLoading();
+        })
+        .catch(() => {
+          this.dialogMessage = '短链接生成失败 请检查短链接服务是否可用';
+          this.openDialog();
+          hideLoading();
         });
     },
     openDialog() {
