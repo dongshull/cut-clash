@@ -118,6 +118,7 @@
 <script>
 import { showLoading, hideLoading } from '@/components/loading';
 import { getSubLink, regexCheck } from './index.js';
+import { request } from '@/network';
 import showNotification from '@/components/notification';
 
 export default {
@@ -256,11 +257,17 @@ export default {
       if (!this.getConverter()) {
         return;
       }
+      let data = new FormData();
+      data.append('longUrl', btoa(this.result.subUrl));
       showLoading();
       request({
-        method: 'get',
-        url: this.shortUrl + '/short?url=' + btoa(this.result.subUrl),
-      })
+        method: 'post',
+        url: this.shortUrl + '/short',
+        header: {
+          'Content-Type': 'application/form-data; charset=utf-8',
+        },
+        data: data,
+       })
         .then((res) => {
           if (res.data.Code === 1 && res.data.ShortUrl !== '') {
             this.result.shortUrl = res.data.ShortUrl;
@@ -269,8 +276,7 @@ export default {
           hideLoading();
         })
         .catch(() => {
-          this.dialogMessage = '短链接生成失败 请检查短链接服务是否可用';
-          this.openDialog();
+          this.$showDialog('error', '失败', '短链接生成失败 请检查短链接服务是否可用');
           hideLoading();
         });
     },
