@@ -45,8 +45,8 @@
                   <label class="form-label">&nbsp;</label>
                   <button type="button" class="btn btn-warning w-100" @click="showMoreConfig">参数</button>
                 </div>
-                <div class="col-12" v-if="isShowMoreConfig">
-                  <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" v-show="isShowRemoteConfig" />
+                <div class="col-12" v-if="isShowRemoteConfig">
+                  <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowMoreConfig">
                   <label class="form-label" for="add-user-email">可选参数</label>
@@ -172,7 +172,7 @@ export default {
       api: window.config.apiUrl,
       target: 'clash',
       remoteConfig: '',
-      dialogMessage: '', // 新增变量，用于存储弹窗的消息内容
+      dialogMessage: '',  // 新增变量，用于存储弹窗的消息内容
     };
   },
   methods: {
@@ -185,59 +185,105 @@ export default {
         this.isShowManualApiUrl = true;
       } else {
         this.isShowManualApiUrl = false;
+        this.api = event.target.value;
       }
     },
     selectRemoteConfig(event) {
-      this.isShowRemoteConfig = event.target.value === 'manual';
+      if (event.target.value == 'manual') {
+        this.remoteConfig = '';
+        this.isShowRemoteConfig = true;
+      } else {
+        this.isShowRemoteConfig = false;
+        this.remoteConfig = event.target.value;
+      }
+    },
+    toCopy(url, title) {
+      if (!url) {
+        this.dialogMessage = '复制失败 内容为空';
+        this.openDialog();
+        return;
+      }
+      var copyInput = document.createElement('input');
+      copyInput.setAttribute('value', url);
+      document.body.appendChild(copyInput);
+      copyInput.select();
+      try {
+        var copyed = document.execCommand('copy');
+        if (copyed) {
+          document.body.removeChild(copyInput);
+          showNotification(title + ' 复制成功', '成功');
+        }
+      } catch {
+        this.dialogMessage = '复制失败，请检查浏览器兼容性';
+        this.openDialog();
+      }
+    },
+    getConverter() {
+      if (this.urls == '') {
+        this.dialogMessage = '请输入订阅链接或节点';
+        this.openDialog();
+        return false;
+      }
+      if (!regexCheck(this.api)) {
+        this.dialogMessage = '请输入自定义后端 API 地址，或选择默认后端服务。';
+        this.openDialog();
+        return false;
+      }
+      if (this.remoteConfig == '' && this.isShowRemoteConfig) {
+        this.dialogMessage = '请输入远程配置地址，或选择默认配置。';
+        this.openDialog();
+        return false;
+      }
+      if (this.api.endsWith('/')) {
+        this.api = this.api.slice(0, -1);
+      }
+      this.result.subUrl = getSubLink(
+        this.urls,
+        this.api,
+        this.target,
+        this.remoteConfig,
+        this.isShowMoreConfig,
+        this.moreConfig
+      );
+      return true;
     },
     getSubUrl() {
-      const self = this;
-      if (this.urls.length <= 0 || !this.target) {
-        showNotification('warning', '请输入订阅链接和客户端类型!');
+      if (!this.getConverter()) {
         return;
       }
-      showLoading('加载中，请稍候...');
+      this.toCopy(this.result.subUrl, '订阅链接');
+    },
+    getShortUrl() {
+      if (!this.getConverter()) {
+        return;
+      }
+      let data = new FormData();
+      data.append('longUrl', btoa(this.result.subUrl));
+      showLoading();
       request({
-        method: 'POST',
-        url: self.api,
-        data: {
-          target: self.target,
-          urls: self.urls,
-          config: self.moreConfig,
-          remoteConfig: self.remoteConfig,
+        method: 'post',
+        url: this.shortUrl + '/short',
+        header: {
+          'Content-Type': 'application/form-data; charset=utf-8',
         },
+        data: data,
       })
-        .then((response) => {
-          if (response.data) {
-            self.result.subUrl = response.data;
+        .then((res) => {
+          if (res.data.Code === 1 && res.data.ShortUrl !== '') {
+            this.result.shortUrl = res.data.ShortUrl;
+            this.toCopy(this.result.shortUrl, '短链接');
           }
+          hideLoading();
         })
-        .catch((error) => {
-          console.log(error);
-          showNotification('danger', '请求失败，请重试！');
-        })
-        .finally(() => {
+        .catch(() => {
+          this.dialogMessage = '短链接生成失败 请检查短链接服务是否可用';
+          this.openDialog();
           hideLoading();
         });
     },
-    getShortUrl() {
-      const self = this;
-      if (!regexCheck(this.result.subUrl)) {
-        showNotification('warning', '请输入正确的订阅链接!');
-        return;
-      }
-      showLoading('生成中，请稍候...');
-      getSubLink(self.shortUrl, self.result.subUrl)
-        .then((response) => {
-          self.result.shortUrl = response;
-        })
-        .catch((error) => {
-          console.log(error);
-          showNotification('danger', '请求失败，请重试！');
-        })
-        .finally(() => {
-          hideLoading();
-        });
+    openDialog() {
+      const dialog = this.$refs.errorDialog;
+      dialog.showModal();
     },
     closeDialog() {
       const dialog = this.$refs.errorDialog;
