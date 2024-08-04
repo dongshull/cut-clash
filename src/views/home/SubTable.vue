@@ -6,11 +6,11 @@
           <div class="card mb-4 glass-effect">
             <div class="card-body">
               <div class="row mb-3 g-3">
-                <div class="col-12 col-md-12">
+                <div class="col-12">
                   <label class="form-label" for="add-user-email">订阅链接</label>
                   <textarea class="form-control" v-model.trim="urls" :placeholder="placeholder" rows="3"></textarea>
                 </div>
-                <div class="col-5 col-md-6">
+                <div class="col-12 col-md-6">
                   <label class="form-label" for="client">客户端</label>
                   <select class="form-select" id="client" v-model="target" @change="selectTarget">
                     <option v-for="option in targetOptions" :key="option" :value="option.value">
@@ -18,7 +18,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="col-7 col-md-6">
+                <div class="col-12 col-md-6">
                   <label class="form-label" for="api">后端服务</label>
                   <select class="form-select" id="api" @change="selectApi">
                     <option value="">请选择后端</option>
@@ -31,7 +31,7 @@
                 <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
                   <input class="form-control" placeholder="自定义后端API地址" v-model="api" />
                 </div>
-                <div class="col-8 col-md-10">
+                <div class="col-12 col-md-10">
                   <label class="form-label" for="remote">远程配置</label>
                   <select class="form-select" id="remote" @change="selectRemoteConfig">
                     <option value="">请选择配置</option>
@@ -41,20 +41,20 @@
                     <option value="manual">自定义远程配置地址</option>
                   </select>
                 </div>
-                <div class="col-4 col-md-2">
+                <div class="col-12 col-md-2 d-flex align-items-end">
                   <label class="form-label">&nbsp;</label>
                   <button type="button" class="btn btn-warning" @click="showMoreConfig">参数</button>
                 </div>
-                <div class="col-12 col-md-12" v-if="isShowRemoteConfig">
+                <div class="col-12" v-if="isShowMoreConfig">
                   <input class="form-control" placeholder="自定义远程配置地址" v-model="remoteConfig" />
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowMoreConfig">
                   <label class="form-label" for="add-user-email">可选参数</label>
                   <div class="row g-3">
-                    <div class="col-12 col-md-12">
+                    <div class="col-12 col-md-6">
                       <input class="form-control" placeholder="Include: 可选" v-model="moreConfig.include" />
                     </div>
-                    <div class="col-12 col-md-12">
+                    <div class="col-12 d-flex flex-wrap">
                       <input class="form-control" placeholder="Exclude: 可选" v-model="moreConfig.exclude" />
                     </div>
                     <div class="col-md check-div" :style="{ display: 'flex', flexWrap: 'wrap' }">
@@ -81,7 +81,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-md-12">
+                <div class="col-12">
                   <div class="divider divider-dashed">
                     <div class="divider-text"><i class="ti ti-refresh" style="color: gray"></i></div>
                   </div>
