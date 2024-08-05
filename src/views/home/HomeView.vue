@@ -68,8 +68,10 @@ export default {
   }
 }
 
+/* 减小底部的距离 */
 .landing-hero-blank {
   padding-top: 0;
   min-height: 0;
+  margin-bottom: 0; /* 去除多余的底部间距 */
 }
 </style>
