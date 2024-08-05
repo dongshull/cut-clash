@@ -296,7 +296,7 @@ export default {
 <style scoped>
 /* 毛玻璃效果样式 */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.1); /* 调整透明度 */
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 15px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
