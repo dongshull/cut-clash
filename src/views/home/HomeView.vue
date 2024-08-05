@@ -3,6 +3,7 @@
     <div id="landingHero" class="section-py landing-hero position-relative">
       <div class="container">
         <div class="hero-text-box text-center transparent-background">
+          <!-- 可以在这里添加内容 -->
         </div>
         <div class="hero-animation-img">
           <SubTable />
@@ -25,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
-/* 大屏幕背景 - 桌面设备 */
+/* 大屏幕（宽度大于1200px） */
 .landing-hero {
   background: url('/public/doraemon-large.png') no-repeat center center;
   background-size: cover;
@@ -34,29 +35,22 @@ export default {
   padding-top: 3rem;
 }
 
-/* 中等屏幕背景 */
+/* 中等屏幕（宽度介于576px到1200px之间） */
 @media (max-width: 1199.98px) {
   .landing-hero {
     background: url('/public/doraemon-medium.png') no-repeat center center;
     background-size: cover;
+    min-height: 100vh;
     padding-top: 3rem;
   }
 }
 
-/* 手机竖屏（小屏幕）背景 */
-@media (max-device-width: 575.98px) and (orientation: portrait) {
+/* 小屏幕（宽度小于576px） */
+@media (max-width: 575.98px) {
   .landing-hero {
-    background: url('/public/doraemon-small-portrait.png') no-repeat center center;
+    background: url('/public/doraemon-small.png') no-repeat center center;
     background-size: cover;
-    padding-top: 2rem;
-  }
-}
-
-/* 手机横屏（小屏幕）背景 */
-@media (max-device-width: 575.98px) and (orientation: landscape) {
-  .landing-hero {
-    background: url('/public/doraemon-small-landscape.png') no-repeat center center;
-    background-size: cover;
+    min-height: 100vh;
     padding-top: 2rem;
   }
 }
