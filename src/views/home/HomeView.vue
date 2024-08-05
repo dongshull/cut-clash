@@ -31,7 +31,7 @@ export default {
   background-size: cover;
   min-height: 100vh;
   border-radius: 0;
-  padding-top: 1rem; /* 减少顶部内边距以缩短与顶部的距离 */
+  padding-top: 3rem; /* 适当增加顶部内边距，保持一定距离 */
 }
 
 .transparent-background {
@@ -40,23 +40,23 @@ export default {
 
 .hero-text-box {
   background: transparent;
-  padding: 1rem 0; /* 调整内部内容的上下内边距 */
+  padding: 2rem 0; /* 设置内部内容的上下内边距，保持一定距离 */
 }
 
 .landing-hero .hero-animation-img {
   margin-bottom: 0;
-  padding-top: 3rem; /* 减少顶部内边距 */
+  padding-top: 4rem; /* 适度减少顶部内边距 */
 }
 
 @media (max-width: 1199.98px) {
   .landing-hero .hero-animation-img {
-    padding-top: 2rem; /* 在较小屏幕上进一步减少顶部内边距 */
+    padding-top: 3rem; /* 在较小屏幕上保持合适的距离 */
   }
 }
 
 @media (max-width: 575.98px) {
   .landing-hero .hero-animation-img {
-    padding-top: 1rem; /* 在手机屏幕上进一步减少顶部内边距 */
+    padding-top: 2rem; /* 在手机屏幕上保持适当的距离 */
   }
 }
 
