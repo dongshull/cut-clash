@@ -9,7 +9,7 @@
 ```shell
 docker run -d --name subweb --restart always \
   -p 18080:80 \
-  stilleshan/subweb
+  shihairu/subweb
 ```
 
 访问 `http://127.0.0.1:18080`
