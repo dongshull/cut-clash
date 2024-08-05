@@ -68,14 +68,8 @@ export default {
   }
 }
 
-/* 减小底部的距离 */
 .landing-hero-blank {
   padding-top: 0;
   min-height: 0;
-  margin-top: -1rem; /* 通过负 margin-top 缩小间距 */
-}
-
-.section-py {
-  padding-bottom: 0; /* 移除 section 底部的 padding */
 }
 </style>
