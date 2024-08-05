@@ -3,6 +3,7 @@
     <div id="landingHero" class="section-py landing-hero position-relative">
       <div class="container">
         <div class="hero-text-box text-center transparent-background">
+          <!-- 可以在这里添加内容 -->
         </div>
         <div class="hero-animation-img">
           <SubTable />
@@ -28,8 +29,9 @@ export default {
 .landing-hero {
   background: url('/public/doraemon.png') no-repeat center center;
   background-size: cover;
-  min-height: 120vh; /* 增加高度至120% */
+  min-height: 100vh;
   border-radius: 0;
+  padding-top: 1rem; /* 减少顶部内边距以缩短与顶部的距离 */
 }
 
 .transparent-background {
@@ -38,29 +40,23 @@ export default {
 
 .hero-text-box {
   background: transparent;
-  padding: 2rem 0;
+  padding: 1rem 0; /* 调整内部内容的上下内边距 */
 }
 
 .landing-hero .hero-animation-img {
   margin-bottom: 0;
-  padding-top: 5rem;
+  padding-top: 3rem; /* 减少顶部内边距 */
 }
 
 @media (max-width: 1199.98px) {
-  .landing-hero {
-    min-height: 110vh; /* 针对较小屏幕设备调整高度 */
-  }
   .landing-hero .hero-animation-img {
-    padding-top: 3rem;
+    padding-top: 2rem; /* 在较小屏幕上进一步减少顶部内边距 */
   }
 }
 
 @media (max-width: 575.98px) {
-  .landing-hero {
-    min-height: 130vh; /* 针对更小屏幕设备调整高度 */
-  }
   .landing-hero .hero-animation-img {
-    padding-top: 2rem;
+    padding-top: 1rem; /* 在手机屏幕上进一步减少顶部内边距 */
   }
 }
 
