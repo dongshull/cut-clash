@@ -26,33 +26,12 @@ export default {
 </script>
 
 <style scoped>
-/* 大屏幕（宽度大于1200px） */
 .landing-hero {
-  background: url('/public/doraemon-large.png') no-repeat center center;
+  background: url('/public/doraemon.png') no-repeat center center;
   background-size: cover;
   min-height: 100vh;
   border-radius: 0;
-  padding-top: 3rem;
-}
-
-/* 中等屏幕（宽度介于576px到1200px之间） */
-@media (max-width: 1199.98px) {
-  .landing-hero {
-    background: url('/public/doraemon-medium.png') no-repeat center center;
-    background-size: cover;
-    min-height: 100vh;
-    padding-top: 3rem;
-  }
-}
-
-/* 小屏幕（宽度小于576px） */
-@media (max-width: 575.98px) {
-  .landing-hero {
-    background: url('/public/doraemon-small.png') no-repeat center center;
-    background-size: cover;
-    min-height: 100vh;
-    padding-top: 2rem;
-  }
+  padding-top: 3rem; /* 适当增加顶部内边距，保持一定距离 */
 }
 
 .transparent-background {
@@ -61,12 +40,24 @@ export default {
 
 .hero-text-box {
   background: transparent;
-  padding: 2rem 0;
+  padding: 2rem 0; /* 设置内部内容的上下内边距，保持一定距离 */
 }
 
 .landing-hero .hero-animation-img {
   margin-bottom: 0;
-  padding-top: 4rem;
+  padding-top: 4rem; /* 适度减少顶部内边距 */
+}
+
+@media (max-width: 1199.98px) {
+  .landing-hero .hero-animation-img {
+    padding-top: 3rem; /* 在较小屏幕上保持合适的距离 */
+  }
+}
+
+@media (max-width: 575.98px) {
+  .landing-hero .hero-animation-img {
+    padding-top: 2rem; /* 在手机屏幕上保持适当的距离 */
+  }
 }
 
 .landing-hero-blank {
