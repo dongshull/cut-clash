@@ -31,7 +31,7 @@ export default {
   background-size: cover;
   min-height: 100vh;
   border-radius: 0;
-  padding-top: 3rem;
+  padding-top: 2rem; /* 减少顶部间距 */
 }
 
 /* 为手机屏幕设置不同的背景图片 */
@@ -48,23 +48,23 @@ export default {
 
 .hero-text-box {
   background: transparent;
-  padding: 2rem 0;
+  padding: 1.5rem 0; /* 减少内容区的上下内边距 */
 }
 
 .landing-hero .hero-animation-img {
   margin-bottom: 0;
-  padding-top: 4rem;
+  padding-top: 3rem; /* 减少顶部内边距 */
 }
 
 @media (max-width: 1199.98px) {
   .landing-hero .hero-animation-img {
-    padding-top: 3rem;
+    padding-top: 2.5rem; /* 调整小屏幕下的顶部内边距 */
   }
 }
 
 @media (max-width: 575.98px) {
   .landing-hero .hero-animation-img {
-    padding-top: 2rem;
+    padding-top: 2rem; /* 调整手机屏幕下的顶部内边距 */
   }
 }
 
