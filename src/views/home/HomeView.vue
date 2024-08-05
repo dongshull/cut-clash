@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 .landing-hero {
-  background: url('/public/doraemon-image.jpeg') no-repeat center center;
+  background: url('/public/doraemon.png') no-repeat center center;
   background-size: cover;
   min-height: 100vh;
   border-radius: 0;
