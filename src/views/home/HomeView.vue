@@ -28,7 +28,7 @@ export default {
 .landing-hero {
   background: url('/public/doraemon.png') no-repeat center center;
   background-size: cover;
-  min-height: 100vh;
+  min-height: 120vh; /* 增加高度至120% */
   border-radius: 0;
 }
 
@@ -47,12 +47,18 @@ export default {
 }
 
 @media (max-width: 1199.98px) {
+  .landing-hero {
+    min-height: 110vh; /* 针对较小屏幕设备调整高度 */
+  }
   .landing-hero .hero-animation-img {
     padding-top: 3rem;
   }
 }
 
 @media (max-width: 575.98px) {
+  .landing-hero {
+    min-height: 130vh; /* 针对更小屏幕设备调整高度 */
+  }
   .landing-hero .hero-animation-img {
     padding-top: 2rem;
   }
