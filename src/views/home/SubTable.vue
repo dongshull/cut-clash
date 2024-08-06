@@ -71,10 +71,6 @@
                         <label class="form-check-label" for="xudp">开启XUDP</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="clash.doh" v-model="moreConfig.clash.doh" />
-                        <label class="form-check-label" for="clash.doh">Clash.DoH/label>
-                      </div>
-                      <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="sort" v-model="moreConfig.sort" />
                         <label class="form-check-label" for="sort">排序节点</label>
                       </div>
