@@ -27,8 +27,8 @@ export default {
   setup() {
     const backgroundUrl = ref(localStorage.getItem('backgroundUrl') || '');
 
-    const defaultDesktopBackgroundUrl = require('../../assets/img/front-pages/backgrounds/doraemon-desktop.png'); // 默认桌面背景地址
-    const defaultMobileBackgroundUrl = require('../../assets/img/front-pages/backgrounds/doraemon-mobile.png'); // 默认移动端背景地址
+    const defaultDesktopBackgroundUrl = 'https://www.z4a.net/images/2024/08/07/doraemon-mobile.jpg'; // 默认桌面背景地址
+    const defaultMobileBackgroundUrl = 'https://www.z4a.net/images/2024/08/07/doraemon-desktop.png'; // 默认移动端背景地址
 
 
     const isMobile = ref(false);
