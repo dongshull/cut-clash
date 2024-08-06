@@ -22,6 +22,11 @@ const getSubLink = function (urls, api, target, remoteConfig, isShowMoreConfig, 
     } else {
       finalUrl = finalUrl + '&udp=false';
     }
+    if (moreConfig.xudp) {
+      finalUrl = finalUrl + '&xudp=true';
+    } else {
+      finalUrl = finalUrl + '&xudp=false';
+    }
     if (moreConfig.sort) {
       finalUrl = finalUrl + '&sort=true';
     } else {
