@@ -71,6 +71,14 @@
                         <label class="form-check-label" for="xudp">开启XUDP</label>
                       </div>
                       <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="clash.doh" v-model="moreConfig.clash.doh" />
+                        <label class="form-check-label" for="clash.doh">Clash.DoH</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="surge.doh" v-model="moreConfig.surge.doh" />
+                        <label class="form-check-label" for="surge.doh">Surge.DoH</label>
+                      </div>
+                      <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="sort" v-model="moreConfig.sort" />
                         <label class="form-check-label" for="sort">排序节点</label>
                       </div>
@@ -133,6 +141,7 @@ export default {
       exclude: '',
       emoji: true,
       udp: true,
+      xudp: true,
       sort: false,
       scv: false,
       list: false,
@@ -149,7 +158,7 @@ export default {
         { value: 'clashr', text: 'ClashR' },
         { value: 'v2ray', text: 'V2Ray' },
         { value: 'singbox', text: 'Sing-box' },
-        { value: 'quan', text: 'Quantumult' },
+        { value: 'quan', text: 'Quantumult' },x
         { value: 'quanx', text: 'Quantumult X' },
         { value: 'surge&ver=2', text: 'SurgeV2' },
         { value: 'surge&ver=3', text: 'SurgeV3' },
