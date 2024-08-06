@@ -27,7 +27,6 @@ const getSubLink = function (urls, api, target, remoteConfig, isShowMoreConfig, 
     } else {
       finalUrl = finalUrl + '&xudp=false';
     }
-    }
     if (moreConfig.sort) {
       finalUrl = finalUrl + '&sort=true';
     } else {
