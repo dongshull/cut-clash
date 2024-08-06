@@ -133,7 +133,6 @@ export default {
       exclude: '',
       emoji: true,
       udp: true,
-      xudp: true,
       sort: false,
       scv: false,
       list: false,
@@ -150,7 +149,7 @@ export default {
         { value: 'clashr', text: 'ClashR' },
         { value: 'v2ray', text: 'V2Ray' },
         { value: 'singbox', text: 'Sing-box' },
-        { value: 'quan', text: 'Quantumult' },x
+        { value: 'quan', text: 'Quantumult' },
         { value: 'quanx', text: 'Quantumult X' },
         { value: 'surge&ver=2', text: 'SurgeV2' },
         { value: 'surge&ver=3', text: 'SurgeV3' },
