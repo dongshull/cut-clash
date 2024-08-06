@@ -4,6 +4,7 @@
       <div class="navbar navbar-expand-lg landing-navbar px-3 px-md-4">
         <AppBrand />
         <NavMenu />
+        <Background />
       </div>
     </div>
   </nav>
@@ -12,11 +13,14 @@
 <script>
 import AppBrand from './AppBrand.vue';
 import NavMenu from './NavMenu.vue';
+import Background from './Background.vue';
+
 export default {
   name: 'NavBar',
   components: {
     AppBrand,
     NavMenu,
+    Background,
   },
   computed: {
     navStyles() {
