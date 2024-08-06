@@ -76,7 +76,7 @@
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="surge.doh" v-model="moreConfig.surge.doh" />
-                        <label class="form-check-label" for="surge.doh">Surge.DoH</label>
+                        <label class="form-check-label" for="surge.doh">Surge.DoH/label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="sort" v-model="moreConfig.sort" />
