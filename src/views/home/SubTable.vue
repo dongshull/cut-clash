@@ -1,7 +1,7 @@
 <template>
   <div class="row g-4 custom-div">
     <div class="col-12 col-lg-12 pt-4 pt-lg-0">
-      <div class="tab-content p-0 glass-effect">
+      <div class="tab-content p-0 ">
         <div class="tab-pane fade show active">
           <div class="card mb-4 glass-effect">
             <div class="card-body">
