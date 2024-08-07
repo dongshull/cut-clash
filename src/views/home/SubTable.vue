@@ -72,7 +72,7 @@
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="clash.doh" v-model="moreConfig.clash.doh" />
-                        <label class="form-check-label" for="clash.doh">开启Clash.DoH</label>
+                        <label class="form-check-label" for="clash.doh">开启Clash-DoH</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="sort" v-model="moreConfig.sort" />
