@@ -158,6 +158,7 @@ export default {
         { value: 'surge&ver=2', text: 'SurgeV2' },
         { value: 'surge&ver=3', text: 'SurgeV3' },
         { value: 'surge&ver=4', text: 'SurgeV4' },
+        { value: 'surge&ver=5', text: 'SurgeV5' },
         { value: 'surfboard', text: 'Surfboard' },
         { value: 'ss', text: 'SS (SIP002)' },
         { value: 'sssub', text: 'SS Android' },
