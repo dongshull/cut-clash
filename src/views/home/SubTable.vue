@@ -19,9 +19,9 @@
                   </select>
                 </div>
                 <div class="col-12 col-md-6">
-                  <label class="form-label" for="api">后端服务</label>
+                  <label class="form-label" for="api">后端转换服务</label>
                   <select class="form-select" id="api" @change="selectApi">
-                    <option value="">请选择后端</option>
+                    <option value="">请选择后端服务</option>
                     <option v-for="option in apiUrl" :key="option" :value="option.value">
                       {{ option.text }}
                     </option>
@@ -29,10 +29,10 @@
                   </select>
                 </div>
                 <div class="col-12 col-md-12" v-if="isShowManualApiUrl">
-                  <input class="form-control" placeholder="自定义后端API地址" v-model="api" />
+                  <input class="form-control" placeholder="自定义后端API地址或者你自己的域名示例：http://you-url:25500" v-model="api" />
                 </div>
                 <div class="col-12 col-md-10">
-                  <label class="form-label" for="remote">远程配置</label>
+                  <label class="form-label" for="remote">远程配置（Github url）</label>
                   <select class="form-select" id="remote" @change="selectRemoteConfig">
                     <option value="">请选择配置</option>
                     <option v-for="option in remoteConfigOptions" :key="option" :value="option.value">
@@ -80,7 +80,7 @@
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="scv" v-model="moreConfig.scv" />
-                        <label class="form-check-label" for="scv">关闭证书检查</label>
+                        <label class="form-check-label" for="scv">跳过证书验证</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" id="nodelist" v-model="moreConfig.list" />
@@ -150,9 +150,11 @@ export default {
       placeholder: '多订阅链接或节点请确保每行一条\n支持手动使用"|"分割多链接或节点',
       targetOptions: [
         { value: 'clash', text: 'Clash' },
+        { value: 'clash', text: 'Clash-Mate' },
         { value: 'clashr', text: 'ClashR' },
         { value: 'v2ray', text: 'V2Ray' },
         { value: 'singbox', text: 'Sing-box' },
+        { value: 'loon', text: 'Loon' },
         { value: 'quan', text: 'Quantumult' },
         { value: 'quanx', text: 'Quantumult X' },
         { value: 'surge&ver=2', text: 'SurgeV2' },
@@ -163,8 +165,7 @@ export default {
         { value: 'ss', text: 'SS (SIP002)' },
         { value: 'sssub', text: 'SS Android' },
         { value: 'ssd', text: 'SSD' },
-        { value: 'ssr', text: 'SSR' },
-        { value: 'loon', text: 'Loon' },
+        { value: 'ssr', text: 'SSR' },        
       ],
       apiUrl: window.config.apiUrl,
       shortUrl: window.config.shortUrl,
