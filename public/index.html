@@ -4,10 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <link rel="icon" type="image/png" href="<%= BASE_URL %>favicon.png">
-    <!-- <title><%= htmlWebpackPlugin.options.title %></title> -->
+    <!-- 移除原有的 favicon 链接 -->
     <title>Clash URL</title>
     <script type="text/javascript" src="<%= BASE_URL %>conf/config.js"></script>
+    <script>
+      // 动态设置 favicon
+      window.onload = function() {
+        const link = document.createElement('link');
+        link.rel = 'icon';
+        link.type = 'image/png';
+        link.href = './icon.png'; // 设置为与 config.js 同一文件夹的图标
+        document.head.appendChild(link);
+      };
+    </script>
   </head>
   <body>
     <noscript>
