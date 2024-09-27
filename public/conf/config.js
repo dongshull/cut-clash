@@ -7,6 +7,14 @@ window.config = {
   footer: {
     copyright: "Copyright © Clash URL - DongShu. All rights reserved."
   },
+  // 首页菜单
+  menuItem: [
+    {
+      title: 'emoji',
+      link: 'https://getemoji.com/',
+      target: '_blank',
+    },    
+  ],
   // API 地址
   apiUrl: [
     {
