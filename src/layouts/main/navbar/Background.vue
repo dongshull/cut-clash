@@ -1,5 +1,5 @@
 <template>
-    <button class="btn menu-text fw-bold" @click="showModal = true">切换背景</button>
+    <button class="btn menu-text fw-bold" @click="showModal = true">🖼️</button>
 
     <!-- 模态框 -->
     <div v-if="showModal" class="modal">
