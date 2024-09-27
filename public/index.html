@@ -7,8 +7,12 @@
     <title>Clash URL</title>
     <script type="text/javascript" src="<%= BASE_URL %>conf/config.js"></script>
     <script>
-      // 动态设置 favicon
+      // 动态设置网页标题和 favicon
       window.onload = function() {
+        // 设置网页标题
+        document.title = window.config.siteName; // 从 config.js 获取网站标题
+
+        // 设置 favicon
         const link = document.createElement('link');
         link.rel = 'icon';
         link.type = 'image/png';
