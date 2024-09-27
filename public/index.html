@@ -4,20 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <title>Clash URL</title>
+    <link rel="icon" type="image/png" href="<%= BASE_URL %>favicon.png">
+    <title></title> <!-- 清空初始标题 -->
     <script type="text/javascript" src="<%= BASE_URL %>conf/config.js"></script>
     <script>
-      // 动态设置网页标题和 favicon
+      // 动态设置网页标题
       window.onload = function() {
-        // 设置网页标题
         document.title = window.config.siteName; // 从 config.js 获取网站标题
-
-        // 设置 favicon
-        const link = document.createElement('link');
-        link.rel = 'icon';
-        link.type = 'image/png';
-        link.href = window.config.icon; // 从 config.js 获取图标 URL
-        document.head.appendChild(link);
       };
     </script>
   </head>
