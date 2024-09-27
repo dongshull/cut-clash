@@ -16,7 +16,7 @@
     <!-- Mobile menu toggle: End-->
     <router-link to="/" class="app-brand-link">
       <span class="app-brand-logo demo">
-        <img :src="window.config.icon" alt="Logo" class="app-logo" style="height: 32px; width: auto;" />
+        <img :src="window.config.icon" alt="Logo" class="app-logo" />
       </span>
       <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">{{ siteName }}</span>
     </router-link>
@@ -28,11 +28,8 @@ export default {
   name: 'AppBrand',
   data() {
     return {
-      siteName: '',
+      siteName: window.config.siteName || 'Default Site Name', // 设置默认名称
     };
-  },
-  created() {
-    this.siteName = window.config.siteName;
   },
 };
 </script>
