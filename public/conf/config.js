@@ -1,6 +1,10 @@
 window.config = {
   // 网站标题
   siteName: 'Subweb-new',
+  // 网站页脚
+  footer: {
+    copyright: "Copyright © 全影自动坊 - DongShu. All rights reserved."
+  },
   // API 地址
   apiUrl: [
     {

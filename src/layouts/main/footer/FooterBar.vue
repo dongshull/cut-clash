@@ -37,7 +37,7 @@
             </svg>            
           </span>
           <br>
-          <span>Copyright © 全影自动坊 - DongShu. All rights reserved.</span>
+          <span>{{ copyright }}</span>
         </div>
       </div>
     </div>
@@ -47,5 +47,10 @@
 <script>
 export default {
   name: 'FooterBar',
+  data() {
+    return {
+      copyright: window.config.footer.copyright
+    };
+  },
 };
 </script>
