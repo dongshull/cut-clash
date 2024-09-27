@@ -1,6 +1,6 @@
 window.config = {
   // 网站图标
-  icon: './icon.png', // 设置为与 config.js 同一文件夹的图标
+  icon: 'https://example.com/path/to/icon.png', // 替换为你的图标 URL
   // 网站标题
   siteName: 'Clash URL',
   // 网站页脚

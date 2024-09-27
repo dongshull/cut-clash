@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-    <!-- 移除原有的 favicon 链接 -->
     <title>Clash URL</title>
     <script type="text/javascript" src="<%= BASE_URL %>conf/config.js"></script>
     <script>
@@ -13,7 +12,7 @@
         const link = document.createElement('link');
         link.rel = 'icon';
         link.type = 'image/png';
-        link.href = './icon.png'; // 设置为与 config.js 同一文件夹的图标
+        link.href = window.config.icon; // 从 config.js 获取图标 URL
         document.head.appendChild(link);
       };
     </script>
