@@ -16,7 +16,7 @@
     <!-- Mobile menu toggle: End-->
     <router-link to="/" class="app-brand-link">
       <span class="app-brand-logo demo">
-        <img src="/favicon.png" alt="Logo" class="app-logo" style="height: 32px; width: auto;" />
+        <img :src="window.config.icon" alt="Logo" class="app-logo" style="height: 32px; width: auto;" />
       </span>
       <span class="app-brand-text demo menu-text fw-bold ms-2 ps-1">{{ siteName }}</span>
     </router-link>
