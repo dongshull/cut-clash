@@ -1,9 +1,9 @@
 window.config = {
   // 网站标题
-  siteName: 'Subweb-new',
+  siteName: 'Clash URL',
   // 网站页脚
   footer: {
-    copyright: "Copyright © 全影自动坊 - DongShu. All rights reserved."
+    copyright: "Copyright © Clash URL - DongShu. All rights reserved."
   },
   // API 地址
   apiUrl: [
