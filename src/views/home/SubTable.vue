@@ -149,8 +149,7 @@ export default {
     return {
       placeholder: '多订阅链接或节点请确保每行一条\n支持手动使用"|"分割多链接或节点',
       targetOptions: [
-        { value: 'clash', text: 'Clash' },
-        { value: 'clash', text: 'Clash-Mate' },
+        { value: 'Clash-Mate', text: 'Clash-Mate' },
         { value: 'clashr', text: 'ClashR' },
         { value: 'v2ray', text: 'V2Ray' },
         { value: 'singbox', text: 'Sing-box' },
@@ -180,7 +179,7 @@ export default {
       },
       urls: [],
       api: window.config.apiUrl,
-      target: 'clash',
+      target: 'Clash-Mate',
       remoteConfig: '',
       dialogMessage: '',  // 新增变量，用于存储弹窗的消息内容
     };
