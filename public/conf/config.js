@@ -391,8 +391,6 @@ window.config = {
     {
       value: 'https://raw.githubusercontent.com/SleepyHeeead/subconverter-config/master/remote-config/special/basic.ini',
       text: 'Basic',
-    }
-    
-    
+    }   
   ],
 };
