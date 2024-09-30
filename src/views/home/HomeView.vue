@@ -16,7 +16,6 @@
 
 <script>
 import SubTable from './SubTable.vue';
-import eventBus from '../../layouts/main/navbar/eventBus.js';
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 export default {
@@ -25,68 +24,43 @@ export default {
     SubTable,
   },
   setup() {
-    const backgroundUrl = ref(localStorage.getItem('backgroundUrl') || '');
-
-    const defaultDesktopBackgroundUrl = require('../../assets/img/front-pages/backgrounds/doraemon-desktop.png'); // 默认桌面背景地址
-    const defaultMobileBackgroundUrl = require('../../assets/img/front-pages/backgrounds/doraemon-mobile.png'); // 默认移动端背景地址
-
+    // 从 config.js 中获取背景图片 URL
+    const desktopBackgroundUrl = window.config.backgrounds.desktop;
+    const mobileBackgroundUrl = window.config.backgrounds.mobile;
 
     const isMobile = ref(false);
+
     // 检查当前屏幕宽度并更新 isMobile
     const updateIsMobile = () => {
       isMobile.value = window.innerWidth <= 575.98;
     };
 
-
-    // 在组件挂载时立即检查一次屏幕宽度
     onMounted(() => {
       updateIsMobile();
       window.addEventListener('resize', updateIsMobile);
-      // 使用事件总线的 on 方法来监听事件
-      eventBus.on('background-updated', handleBackgroundUpdate);
     });
+
     onUnmounted(() => {
       window.removeEventListener('resize', updateIsMobile);
-      // 使用事件总线的 off 方法来移除事件监听
-      eventBus.off('background-updated', handleBackgroundUpdate);
     });
-    
-    // 动态计算和返回样式对象
-    const styleObject = computed(() => {
-      let backgroundImageUrl;
-      if (backgroundUrl.value) {
-        backgroundImageUrl = backgroundUrl.value;
-      } else if (isMobile.value) {
-        backgroundImageUrl = defaultMobileBackgroundUrl;
-      } else {
-        backgroundImageUrl = defaultDesktopBackgroundUrl;
-      }
 
+    // 动态计算样式，根据设备类型选择背景图片
+    const styleObject = computed(() => {
+      const backgroundImageUrl = isMobile.value ? mobileBackgroundUrl : desktopBackgroundUrl;
       return {
         background: `url('${backgroundImageUrl}') no-repeat center center / cover`
       };
     });
-    
-    const handleBackgroundUpdate = (url) => {
-      backgroundUrl.value = url; // 更新背景图片URL
-      localStorage.setItem('backgroundUrl', url); // 保存背景图片URL到本地存储
-    };
 
-    // 返回响应式属性以在模板中使用
     return {
-      backgroundUrl,
-      styleObject
+      styleObject,
     };
-  }
- 
-  
-
+  },
 };
 </script>
 
 <style scoped>
 .landing-hero {
-  
   background-size: cover;
   min-height: 100vh;
   border-radius: 0;
