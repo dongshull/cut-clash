@@ -25,8 +25,11 @@ export default {
   },
   setup() {
     // 从 config.js 中获取背景图片 URL
-    const desktopBackgroundUrl = window.config.backgrounds.desktop;
-    const mobileBackgroundUrl = window.config.backgrounds.mobile;
+    const desktopBackgroundUrl = window.config.backgrounds.desktop || '';
+    const mobileBackgroundUrl = window.config.backgrounds.mobile || '';
+
+    // 获取 localStorage 中的背景URL
+    const backgroundUrl = ref(localStorage.getItem('backgroundUrl') || '');
 
     const isMobile = ref(false);
 
@@ -44,9 +47,21 @@ export default {
       window.removeEventListener('resize', updateIsMobile);
     });
 
-    // 动态计算样式，根据设备类型选择背景图片
+    // 动态计算样式，根据 localStorage、config.js 和设备类型选择背景图片
     const styleObject = computed(() => {
-      const backgroundImageUrl = isMobile.value ? mobileBackgroundUrl : desktopBackgroundUrl;
+      let backgroundImageUrl;
+
+      if (backgroundUrl.value) {
+        // 使用 localStorage 中的背景图片
+        backgroundImageUrl = backgroundUrl.value;
+      } else if (isMobile.value) {
+        // 移动端使用 config.js 中的背景图片
+        backgroundImageUrl = mobileBackgroundUrl;
+      } else {
+        // PC 端使用 config.js 中的背景图片
+        backgroundImageUrl = desktopBackgroundUrl;
+      }
+
       return {
         background: `url('${backgroundImageUrl}') no-repeat center center / cover`
       };
