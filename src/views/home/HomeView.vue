@@ -24,16 +24,16 @@ export default {
     SubTable,
   },
   setup() {
-    // 从 config.js 中获取背景图片 URL
-    const desktopBackgroundUrl = window.config.backgrounds.desktop || '';
-    const mobileBackgroundUrl = window.config.backgrounds.mobile || '';
+    // 获取 config.js 中的背景图片 URL
+    const desktopBackgroundUrl = window.config?.backgrounds?.desktop || require('../../assets/img/front-pages/backgrounds/doraemon-desktop.png');
+    const mobileBackgroundUrl = window.config?.backgrounds?.mobile || require('../../assets/img/front-pages/backgrounds/doraemon-mobile.png');
 
-    // 获取 localStorage 中的背景URL
+    // 获取 localStorage 中的背景 URL
     const backgroundUrl = ref(localStorage.getItem('backgroundUrl') || '');
 
     const isMobile = ref(false);
 
-    // 检查当前屏幕宽度并更新 isMobile
+    // 检查是否为移动设备
     const updateIsMobile = () => {
       isMobile.value = window.innerWidth <= 575.98;
     };
@@ -55,10 +55,10 @@ export default {
         // 使用 localStorage 中的背景图片
         backgroundImageUrl = backgroundUrl.value;
       } else if (isMobile.value) {
-        // 移动端使用 config.js 中的背景图片
+        // 使用 config.js 中或本地的移动端背景图片
         backgroundImageUrl = mobileBackgroundUrl;
       } else {
-        // PC 端使用 config.js 中的背景图片
+        // 使用 config.js 中或本地的桌面端背景图片
         backgroundImageUrl = desktopBackgroundUrl;
       }
 
