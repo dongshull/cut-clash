@@ -7,10 +7,10 @@ window.config = {
   },
   // 背景图片URL配置
   backgrounds: {
-    // PC背景图片URL配置
-    desktop: 'https://example.com/desktop-background.jpg',
-    // 手机端背景图片URL配置
-    mobile: 'https://example.com/mobile-background.jpg',
+    // PC背景图片URL配置 '' 为默认背景,添加图片url 即可
+    desktop: '',
+    // 手机端背景图片URL配置 '' 为默认背景,添加图片url 即可
+    mobile: '',
   },
   // 首页菜单
   menuItem: [

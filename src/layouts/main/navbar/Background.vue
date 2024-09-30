@@ -3,7 +3,7 @@
       <!-- 打开模态框按钮 -->
       <button class="btn menu-text fw-bold" @click="showModal = true">🖼️</button>
       <!-- 清除背景按钮 -->
-      <button class="btn menu-text fw-bold" @click="clearBackground">清除背景</button>
+      <button class="btn menu-text fw-bold" @click="clearBackground">❌</button>
   
       <!-- 模态框 -->
       <div v-if="showModal" class="modal">
@@ -16,8 +16,8 @@
             <input type="text" v-model="backgroundUrl" placeholder="背景图片URL" />
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" @click="setBackground">设置背景</button>
-            <button type="button" class="btn btn-primary" @click="showModal = false">关闭</button>
+            <button type="button" class="btn btn-primary" @click="setBackground">✔️</button>
+            <button type="button" class="btn btn-primary" @click="showModal = false">❌</button>
           </div>
         </div>
       </div>
