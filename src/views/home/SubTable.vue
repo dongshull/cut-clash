@@ -149,11 +149,10 @@ export default {
     return {
       placeholder: '多订阅链接或节点请确保每行一条\n支持手动使用"|"分割多链接或节点',
       targetOptions: [
-        { value: 'Clash-Mate', text: 'Clash-Mate' },
+        { value: 'clash', text: 'Clash' },
         { value: 'clashr', text: 'ClashR' },
         { value: 'v2ray', text: 'V2Ray' },
         { value: 'singbox', text: 'Sing-box' },
-        { value: 'loon', text: 'Loon' },
         { value: 'quan', text: 'Quantumult' },
         { value: 'quanx', text: 'Quantumult X' },
         { value: 'surge&ver=2', text: 'SurgeV2' },
@@ -164,7 +163,8 @@ export default {
         { value: 'ss', text: 'SS (SIP002)' },
         { value: 'sssub', text: 'SS Android' },
         { value: 'ssd', text: 'SSD' },
-        { value: 'ssr', text: 'SSR' },        
+        { value: 'ssr', text: 'SSR' },
+        { value: 'loon', text: 'Loon' },        
       ],
       apiUrl: window.config.apiUrl,
       shortUrl: window.config.shortUrl,
@@ -179,7 +179,7 @@ export default {
       },
       urls: [],
       api: window.config.apiUrl,
-      target: 'Clash-Mate',
+      target: 'clash',
       remoteConfig: '',
       dialogMessage: '',  // 新增变量，用于存储弹窗的消息内容
     };
